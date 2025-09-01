@@ -291,10 +291,10 @@
   let trans_puct_cn(ch) = {
     // 基础标点映射
     let base-replacements = (
-      //(".", "。"),  // 句号
-      ",": "，", // 逗号
+      "。": ".",  // 句号
+      "，": ",", // 逗号
       ";": "；", // 分号
-      ":": "：", // 冒号
+      "：": ":", // 冒号
       "?": "？", // 问号
       "!": "！", // 感叹号
       "(": "（", // 左圆括号
@@ -308,7 +308,7 @@
 
   show "……": set text(tracking: 0em)
 
-  show regex("[.,;:?!()\[\]]"): it => if cfg.force-zh-puct {
+  show regex("[。；：？！（）\[\]]"): it => if cfg.force-zh-puct {
     trans_puct_cn(it)
   } else {
     it
