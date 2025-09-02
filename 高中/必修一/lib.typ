@@ -3,6 +3,8 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "@preview/i-figured:0.2.4"
 #import "@preview/modern-nju-thesis:0.4.0": 字号
+#import "@preview/showybox:2.0.4": showybox
+#import "@preview/tablem:0.3.0": tablem, three-line-table 
 
 
 
@@ -53,7 +55,7 @@
 // Paper-specific configurations
 #let songting-a4 = (
   paper: "a4",
-  margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 3cm),
+  margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
   size: 12pt,
   display-page-numbers: true,
   use-odd-pagebreak: false,
@@ -89,7 +91,12 @@
     numbering: "1 - 1",
     size: 1em,
   ),
-  footnote: (font: 字体.楷体, size: 0.8em, entry_gap: 0.5em, numbering: "[1]"),
+  footnote: (
+    font: 字体.楷体,
+    size: 0.8em, 
+    entry_gap: 0.5em, 
+    numbering: "[1]"
+  ),
   // Base configuration properties
   main-font: 字体.宋体,
   title-font: (字体.黑体),
@@ -99,7 +106,7 @@
   tracking: 0.02em,
   line-spacing: 1.5em,
   par-spacing: 2em,
-  indent: 3em,
+  indent: 2em,
   justify: true,
   header-rule: false,
   
@@ -109,9 +116,9 @@
   header-font: 字体.楷体,
   outline_depth: 4,
   headingone-adjust-char: "  ",
-  enum_num: numbly(
-    "{1:1}、",
-    "{2:①}、",
+  enum_num: numbly(    //有序列表
+    "{1:①}",
+    "{2:1)}",
     "{3:1}、",
     "{4:I}、",
     "{5:1}、",
@@ -121,28 +128,6 @@
   quote-inset: 2em
 )
 
-#let songting-a4-legacy = (
-  ..songting-a4,
-  display-header: false,
-  display-page-numbers: false,
-  tracking: 0em,
-  line-spacing: 0.5em,
-  par-spacing: 1em,
-
-  heading : songting-a4.heading + (
-    header-numbly: ("第{1:一}章 ", "第{2:一}节 ", "{3:I} ", "{4:一}", "({5:一})", "（{6:1}）"),
-    above: (1em, 1em, 1em, 1em, 1em, 1em),
-    below: (1em, 1em, 1em, 1em, 1em, 1em),
-  ),
-  enum_num: numbly(
-    "({1:1})",
-    "{2:①}、",
-    "{3:1}、",
-    "{4:I}、",
-    "{5:1}、",
-    ),
-)
-
 #let songting-a5 = (
   ..songting-a4,
   paper: "a5",
@@ -150,27 +135,6 @@
 )
 
 
-#let songting-a5-legacy = (
-  ..songting-a5,
-  display-header: false,
-  display-page-numbers: false,
-  tracking: 0em,
-  line-spacing: 0.8em,
-  par-spacing: 1em,
-
-  heading : songting-a4.heading + (
-    header-numbly: ("第{1:一}章 ", "第{2:一}节 ", "{3:I} ", "{4:一}", "({5:一})", "（{6:1}）"),
-    above: (1em, 1em, 1em, 1em, 1em, 1em),
-    below: (1em, 1em, 1em, 1em, 1em, 1em),
-  ),
-  enum_num: numbly(
-    "({1:1})",
-    "{2:①}、",
-    "{3:1}、",
-    "{4:I}、",
-    "{5:1}、",
-    ),
-)
 
 #let songting-b6 = (
   ..songting-a4,
@@ -221,6 +185,39 @@
   return (final-cfg, final-cfg.heading)
 }
 
+
+//定义 箱体
+#let def(title:none,..body) = {
+  showybox(  
+    frame: (
+      border-color: blue.darken(50%),
+      body-color: blue.lighten(80%)
+    ),
+    body-style: (
+      align:start,
+    ),
+      ..body,
+  )
+}
+
+//说明 箱体
+#let explanation(color:orange, ..body)={
+  showybox(
+  frame: (
+    dash: "dashed",  //边界样式
+    border-color: orange.darken(20%),
+    body-color: orange.lighten(90%)
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "solid" //分隔符样式
+  ),
+  ..body
+)
+}
+
 // Main book template function
 #let songting-book(
   title: "",
@@ -259,11 +256,12 @@
   // Document setup
   set document(title: title, author: author, date: date)
 
-  // Enumeration settings
-  set enum(
+  // 有序列表设置
+  set enum(   
     full: true,
     numbering: cfg.enum_num,
     number-align: start,
+    indent: cfg.indent
   )
 
   // Page settings
@@ -321,6 +319,14 @@
     justify: cfg.justify,
   )
 
+  
+  set list(
+  marker: ([•]+" ", [--]+" ",), 
+  indent: cfg.indent, 
+  body-indent: 0em, 
+  spacing: cfg.list-spacing
+  ) 
+
   // Cover page
   if cover == auto {
     page(
@@ -372,17 +378,7 @@
     ]
   }
 
-  show list.item: it => {
-    
-    set par(
-    leading: cfg.list-spacing, 
-    spacing: cfg.list-spacing, 
-    first-line-indent: (amount: cfg.indent, all: true)
-    ) 
-    text[• ]+it.body
-  } 
 
-  // set list(marker: [--], indent: 0em, body-indent: 0em, spacing: cfg.list-spacing) if cfg.hide-list-marker
 
   // Start front matter with roman numerals (if page numbers are displayed)
   counter(page).update(1)
@@ -574,4 +570,6 @@
   for item in content-map.at("back") {
     item
   }
+
+  
 }
