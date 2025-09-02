@@ -117,7 +117,6 @@
     "{5:1}、",
   ),
   force-zh-puct: true,
-  hide-list-marker: true,
   list-spacing: 1em,
   quote-inset: 2em
 )
@@ -291,10 +290,10 @@
   let trans_puct_cn(ch) = {
     // 基础标点映射
     let base-replacements = (
-      "。": ".",  // 句号
+      "。": ".  ",  // 句号
       "，": ",", // 逗号
       ";": "；", // 分号
-      "：": ":", // 冒号
+      "：": ": ", // 冒号
       "?": "？", // 问号
       "!": "！", // 感叹号
       "(": "（", // 左圆括号
@@ -374,11 +373,16 @@
   }
 
   show list.item: it => {
-    set par(leading: cfg.list-spacing, spacing: cfg.list-spacing, first-line-indent: (amount: cfg.indent, all: true)) if cfg.hide-list-marker
-    it.body
+    
+    set par(
+    leading: cfg.list-spacing, 
+    spacing: cfg.list-spacing, 
+    first-line-indent: (amount: cfg.indent, all: true)
+    ) 
+    text[• ]+it.body
   } 
 
-  set list(marker: [], indent: 0em, body-indent: 0em, spacing: cfg.list-spacing) if cfg.hide-list-marker
+  // set list(marker: [--], indent: 0em, body-indent: 0em, spacing: cfg.list-spacing) if cfg.hide-list-marker
 
   // Start front matter with roman numerals (if page numbers are displayed)
   counter(page).update(1)
