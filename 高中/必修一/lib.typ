@@ -117,11 +117,11 @@
   outline_depth: 4,
   headingone-adjust-char: "  ",
   enum_num: numbly(    //有序列表
-    "{1:①}",
-    "{2:1)}",
-    "{3:1}、",
-    "{4:I}、",
-    "{5:1}、",
+    "{1:(1)}",
+    "{2:①}",
+    "{3:1°}",
+    "{4:I}",
+    "{5:1}",
   ),
   force-zh-puct: true,
   list-spacing: 1em,
@@ -187,16 +187,26 @@
 
 
 //定义 箱体
-#let def(title:none,..body) = {
+#let def(title: "",..body) = {
   showybox(  
     frame: (
-      border-color: blue.darken(50%),
-      body-color: blue.lighten(80%)
+      border-color: blue.darken(10%),
+      title-color:white, //标题背景色
+      // body-color: blue.lighten(80%)  
     ),
+
+    title-style: (
+    weight: "regular",
+    color:black,
+    align: center
+  ),
     body-style: (
       align:start,
     ),
-      ..body,
+
+    // title: title,
+
+    ..body,
   )
 }
 
@@ -205,8 +215,8 @@
   showybox(
   frame: (
     dash: "dashed",  //边界样式
-    border-color: orange.darken(20%),
-    body-color: orange.lighten(90%)
+    border-color: orange.darken(10%),
+    // body-color: orange.lighten(90%)
   ),
   body-style: (
     align: left
