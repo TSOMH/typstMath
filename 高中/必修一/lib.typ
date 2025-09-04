@@ -86,14 +86,16 @@
   toc-vspace: (2em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
-    font: (字体.黑体, 字体.黑体, 字体.宋体, 字体.黑体, 字体.黑体, 字体.黑体),
-    size: (20pt, 18pt, 16pt, 14pt, 14pt, 14pt),
+    font: (字体.黑体, 字体.黑体, 字体.宋体, 字体.宋体, 字体.宋体, 字体.宋体),
+    size: (20pt, 18pt, 14pt, 13pt, 14pt, 14pt),
     weight: ("bold", "medium", "bold", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
-    above: (2em, 2em, 2em, 1em, 1em, 1em),
-    below: (2em, 2em, 1em, 1em, 1em, 1em),
-    pagebreak: (true, true, false, true, true),
-    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{3:一}、", "（{4:一}）  ", "{5:1}  ", "（{6:1}）  "),
+    hanging-indent:(2em, 2em, 1.5em, 1.2em, 1em, 1em),
+    above: (2em, 2em, 1.5em, 1.2em, 1em, 1em),
+    below: (2em, 2em, 1.5em, 1.2em, 1em, 1em),
+    pagebreak: (true, true, false, false, false),
+    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{3:一}、",
+     "{4:1}.", "{5:1}  ", "（{6:1}）  "),
   ),
   caption: (  
     separator: "  ",
@@ -138,49 +140,13 @@
   quote-inset: 2em
 )
 
-#let songting-a5 = (
-  ..songting-a4,
-  paper: "a5",
-  margin: (top: 2.5cm, bottom: 2.5cm, left: 2cm, right: 2cm),
-)
 
-
-
-#let songting-b6 = (
-  ..songting-a4,
-  paper: "iso-b6",
-  margin: (top: 1cm, bottom: 1cm, left: 0.6cm, right: 0.6cm),
-  size: 字号.小二 + 2pt,
-  display-page-numbers: false,
-  use-odd-pagebreak: false,
-  display-header: false,
-  cover-title-size: 30pt,
-  cover-subtitle-size: 22pt,
-  cover-author-size: 20pt,
-  toc-vspace: (1em, 0.5em),
-  cover-publisher-size: 20pt,
-  cover-date-size: 10pt,
-  cover-edition-size: 10pt,
-  dedication-size-offset: 1pt,
-  toc-entry-size: (字号.小四 + 2pt, 字号.小四 + 1pt, 字号.小四),
-  line-spacing: 1.5em,
-  par-spacing: 2em,
-
-  heading: songting-a4.heading
-    + (
-      size: (1em + 4pt, 1em + 1pt, 1em + 1pt, 1em + 1pt, 1em, 1em),
-      weight: ("bold", "bold", "bold", "regular", "regular", "regular"),
-      pagebreak: (true, true, true, true, true),
-    ),
-)
 
 // Helper function to compute final configuration
 #let compute-config(cfg-override: (:)) = {
   // Available paper configurations
   let songting-paper-configs = (
     a4: songting-a4,
-    a5: songting-a5,
-    b6: songting-b6,
   )
 
   // Default to a4 if no paper type specified
@@ -372,7 +338,7 @@
         }
         #if date != none {
           v(1em)
-          text(size: cfg.cover-date-size)[#date.display("[year]年[month]月[day]日")]
+          text(size: cfg.cover-date-size)[#date.display("[year]年[month]月")]
         }
 
         #if edition != none {
@@ -404,7 +370,10 @@
   counter(page).update(1)
   set page(numbering: "i") if cfg.display-page-numbers
 
-  // Define the heading structure and formatting
+  //四级标题缩进
+  show heading.where(level: 4): pad.with(left: 1.5em)
+
+  // 自定义标题
   show heading: it => {
     let level = it.level
 
@@ -448,6 +417,8 @@
       heading-content
     }
   }
+
+  
 
   // Style for quotes (use KaiTi font)
   show quote: it => {
@@ -555,9 +526,11 @@
   set page(numbering: "1") if cfg.display-page-numbers
 
   // Set up heading numbering for main content
-  set heading(numbering: numbly(
+  set heading(
+    numbering: numbly(
     ..cfg.heading.header-numbly,
-  ))
+  ),
+  )
 
   // Header for main content pages
   set page(header: context {
@@ -585,6 +558,7 @@
   }
 
   set heading(numbering: none)
+
 
   // Output back matter
   for item in content-map.at("back") {
