@@ -5,6 +5,11 @@
 #import "@preview/modern-nju-thesis:0.4.0": 字号
 #import "@preview/showybox:2.0.4": showybox
 #import "@preview/tablem:0.3.0": tablem, three-line-table 
+#import "@preview/cetz:0.4.0"
+#import "@preview/cetz-venn:0.1.4": venn2
+#import "@preview/tablem:0.3.0": tablem, three-line-table
+#import "@preview/cuti:0.2.1": show-cn-fakebold
+#import "@preview/showybox:2.0.4": showybox
 
 
 
@@ -15,8 +20,8 @@
   宋体: (
     (name: "Times New Roman", covers: "latin-in-cjk"),
     // "LXGW Neo ZhiSong Plus", //  霞鹜新致宋
-    "SimSun",
-    // "Source Han Serif SC",
+    // "SimSun",
+    "Source Han Serif SC",
     // "Source Han Serif",
     // "Noto Serif CJK SC",
     // "Songti SC",
@@ -81,14 +86,14 @@
   toc-vspace: (2em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
-    font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
+    font: (字体.黑体, 字体.黑体, 字体.宋体, 字体.黑体, 字体.黑体, 字体.黑体),
     size: (20pt, 18pt, 16pt, 14pt, 14pt, 14pt),
-    weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
+    weight: ("bold", "medium", "bold", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
-    above: (2em, 2em, 2em, 2em, 2em, 2em),
-    below: (2em, 2em, 2em, 2em, 2em, 2em),
-    pagebreak: (true, true, true, true, true),
-    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "（{4:一}）  ", "{5:1}  ", "（{6:1}）  "),
+    above: (2em, 2em, 2em, 1em, 1em, 1em),
+    below: (2em, 2em, 1em, 1em, 1em, 1em),
+    pagebreak: (true, true, false, true, true),
+    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{3:一}、", "（{4:一}）  ", "{5:1}  ", "（{6:1}）  "),
   ),
   caption: (  
     separator: "  ",
@@ -585,6 +590,9 @@
   for item in content-map.at("back") {
     item
   }
+
+  show: show-cn-fakebold
+  show math.equation.where(block: false): it => h(0.25em, weak: true) + it + h(0.25em, weak: true)
 
   
 }
