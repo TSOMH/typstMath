@@ -93,7 +93,7 @@
     hanging-indent:(2em, 2em, 1.5em, 1.2em, 1em, 1em),
     above: (2em, 2em, 1.5em, 1.2em, 1em, 1em),
     below: (2em, 2em, 1.5em, 1.2em, 1em, 1em),
-    pagebreak: (true, true, false, false, false),
+    pagebreak: (false, false, false, false, false),
     header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{3:一}、",
      "{4:1}.", "{5:1}  ", "（{6:1}）  "),
   ),
