@@ -84,11 +84,11 @@
     font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
     size: (22pt, 18pt, 16pt, 14pt, 14pt, 14pt),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
-    align: (center, center, left, left, left, left),
+    align: (center, center, left, center, left, left),
     above: (2em, 2em, 2em, 2em, 2em, 2em),
     below: (2em, 2em, 2em, 2em, 2em, 2em),
-    pagebreak: (true, true, true, true, true),
-    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "（{4:一}）  ", "{5:1}  ", "（{6:1}）  "),
+    pagebreak: (true, true, true, false, true),
+    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "", "{5:1}  ", "（{6:1}）  "),
   ),
   caption: (  
     separator: "  ",
@@ -141,41 +141,14 @@
 
 
 
-#let songting-b6 = (
-  ..songting-a4,
-  paper: "iso-b6",
-  margin: (top: 1cm, bottom: 1cm, left: 0.6cm, right: 0.6cm),
-  size: 字号.小二 + 2pt,
-  display-page-numbers: false,
-  use-odd-pagebreak: false,
-  display-header: false,
-  cover-title-size: 30pt,
-  cover-subtitle-size: 22pt,
-  cover-author-size: 20pt,
-  toc-vspace: (1em, 0.5em),
-  cover-publisher-size: 20pt,
-  cover-date-size: 10pt,
-  cover-edition-size: 10pt,
-  dedication-size-offset: 1pt,
-  toc-entry-size: (字号.小四 + 2pt, 字号.小四 + 1pt, 字号.小四),
-  line-spacing: 1.5em,
-  par-spacing: 2em,
 
-  heading: songting-a4.heading
-    + (
-      size: (1em + 4pt, 1em + 1pt, 1em + 1pt, 1em + 1pt, 1em, 1em),
-      weight: ("bold", "bold", "bold", "regular", "regular", "regular"),
-      pagebreak: (true, true, true, true, true),
-    ),
-)
 
 // Helper function to compute final configuration
 #let compute-config(cfg-override: (:)) = {
   // Available paper configurations
   let songting-paper-configs = (
     a4: songting-a4,
-    a5: songting-a5,
-    b6: songting-b6,
+    a5: songting-a5
   )
 
   // Default to a4 if no paper type specified
@@ -223,6 +196,32 @@
     border-color: orange.darken(10%),
     // body-color: orange.lighten(90%)
   ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "solid" //分隔符样式
+  ),
+  ..body
+)
+}
+
+
+//例题 箱体
+#let question(color:orange, ..body)={
+  showybox(
+  frame: (
+    dash: "dashed",  //边界样式
+    border-color: orange.darken(10%),
+    // body-color: orange.lighten(90%)
+  ),
+
+  title-style: (
+    weight: "regular",
+    color:black,
+    align: center
+  ),
+
   body-style: (
     align: left
   ),
@@ -511,7 +510,7 @@
     set outline(indent: level => (0pt, 18pt, 28pt).slice(0, calc.min(level + 1, 3)).sum())
     show outline.entry: outrageous.show-entry.with(
       ..outrageous.presets.typst,
-      font: (字体.宋体, 字体.宋体,字体.宋体),
+      font: (字体.黑体, 字体.黑体,字体.黑体),
       vspace: cfg.toc-vspace,
       fill: (align(right, repeat(gap: 0.15em)[.]), align(right, repeat(gap: 0.15em)[.])),
       body-transform: (level, prefix, body) => {
