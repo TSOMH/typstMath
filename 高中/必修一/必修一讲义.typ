@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "lib.typ": *
 #import "@preview/tablem:0.3.0": tablem, three-line-table
 #import "@preview/cuti:0.2.1": show-cn-fakebold
 #import "@preview/showybox:2.0.4": showybox

@@ -61,7 +61,7 @@
 #let songting-a4 = (
   paper: "a4",
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
-  size: 12pt,
+  size: 10pt, //正文字号
   display-page-numbers: true,
   use-odd-pagebreak: false,
   cover-title-size: 36pt,
@@ -77,8 +77,8 @@
   toc-title-align: center,
   toc-level1-font: 字体.黑体,
   toc-other-font: 字体.宋体,
-  toc-entry-size: (15pt, 13pt, 11pt),
-  toc-vspace: (2em, 1em),
+  toc-entry-size: (14pt, 12pt, 10pt), //目录字体大小
+  toc-vspace: (1.5em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
     font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
@@ -133,13 +133,6 @@
   quote-inset: 2em
 )
 
-#let songting-a5 = (
-  ..songting-a4,
-  paper: "a5",
-  margin: (top: 2.5cm, bottom: 2.5cm, left: 2cm, right: 2cm),
-)
-
-
 
 
 
@@ -147,8 +140,7 @@
 #let compute-config(cfg-override: (:)) = {
   // Available paper configurations
   let songting-paper-configs = (
-    a4: songting-a4,
-    a5: songting-a5
+    a4: songting-a4
   )
 
   // Default to a4 if no paper type specified
@@ -210,25 +202,46 @@
 //例题 箱体
 #let question(color:orange, ..body)={
   showybox(
+    
+
   frame: (
-    dash: "dashed",  //边界样式
+    
+    dash: "solid",  //边界样式
     border-color: orange.darken(10%),
     // body-color: orange.lighten(90%)
+    inset: 1em //内边距
   ),
+
+
 
   title-style: (
     weight: "regular",
-    color:black,
-    align: center
+    color:orange,
+    align: center,
+    boxed-style:(
+        anchor:(  // 锚点，决定浮动标题框的水平和垂直位置 
+          y:top ,          // 垂直锚点,默认为 horizon
+          x:left  // 水平锚点,默认为 left
+        ),
+        offset:(  // 偏移值
+          x:1pt,   // 水平偏移值，默认为 0pt
+          y:1pt,   // 垂直偏移值，默认为 0pt
+        )
+    )
   ),
 
   body-style: (
     align: left
   ),
+
+  //分隔符属性
   sep: (
-    dash: "solid" //分隔符样式
+    dash: "solid", //分隔符样式
+    gutter:1em,
+    thickness:1pt 
   ),
-  ..body
+  title:"这里是标题",
+  ..body,
 )
 }
 
