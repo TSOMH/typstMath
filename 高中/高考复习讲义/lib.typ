@@ -209,7 +209,9 @@
     dash: "solid",  //边界样式
     border-color: orange.darken(10%),
     // body-color: orange.lighten(90%)
-    inset: 1em //内边距
+    inset: 1pt, //内边距
+    body-inset:1.5em,      // 正文内边距
+    footer-inset:1em,    // 页脚内边距
   ),
 
 
@@ -240,7 +242,6 @@
     gutter:1em,
     thickness:1pt 
   ),
-  title:"这里是标题",
   ..body,
 )
 }
