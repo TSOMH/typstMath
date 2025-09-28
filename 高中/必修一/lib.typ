@@ -233,12 +233,13 @@
 
   showybox(
   frame: (
+    // body-inset:1em,
     dash: "solid",  //边界样式
     border-color: navy.lighten(10%),
     body-color: aqua.lighten(90%)
   ),
   body-style: (
-    align: left
+    align: start,
   ),
   sep: (
     dash: "solid" //分隔符样式
@@ -253,8 +254,8 @@
     [B.]+b,
     [C.]+c,
     [D.]+d)],
-    h(2em)+[*解：*]+analysis,
-    h(2em)+[*答案：*]+answer,
+    h(2em)+[解析：]+analysis,
+    h(2em)+[答案：]+answer,
 )
 }
 
