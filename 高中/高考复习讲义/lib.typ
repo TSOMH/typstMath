@@ -78,7 +78,7 @@
   toc-level1-font: 字体.黑体,
   toc-other-font: 字体.宋体,
   toc-entry-size: (14pt, 12pt, 10pt), //目录字体大小
-  toc-vspace: (1.5em, 1em),
+  toc-vspace: (2em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
     font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),

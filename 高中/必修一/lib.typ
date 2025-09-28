@@ -61,7 +61,7 @@
 #let songting-a4 = (
   paper: "a4",
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
-  size: 12pt,
+  size: 10pt,
   display-page-numbers: true,
   use-odd-pagebreak: false,
   cover-title-size: 36pt,
@@ -82,13 +82,14 @@
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
     font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
-    size: (22pt, 18pt, 16pt, 14pt, 14pt, 14pt),
+    color:(blue,blue,blue,blue,blue,blue),
+    size: (22pt, 16pt, 13pt, 11pt, 14pt, 14pt),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
-    above: (2em, 2em, 2em, 2em, 2em, 2em),
-    below: (2em, 2em, 2em, 2em, 2em, 2em),
-    pagebreak: (true, true, true, true, true),
-    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "（{4:一}）  ", "{5:1}  ", "（{6:1}）  "),
+    above: (2em, 2em, 1.8em, 1.5em, 2em, 2em),
+    below: (2em, 2em, 1.5em, 1.2em, 2em, 2em),
+    pagebreak: (true, true, false, false, false),
+    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "", "{4:1.}", "{5:1}  ", "（{6:1}）  "),
   ),
   caption: (  
     separator: "  ",
@@ -133,49 +134,12 @@
   quote-inset: 2em
 )
 
-#let songting-a5 = (
-  ..songting-a4,
-  paper: "a5",
-  margin: (top: 2.5cm, bottom: 2.5cm, left: 2cm, right: 2cm),
-)
-
-
-
-#let songting-b6 = (
-  ..songting-a4,
-  paper: "iso-b6",
-  margin: (top: 1cm, bottom: 1cm, left: 0.6cm, right: 0.6cm),
-  size: 字号.小二 + 2pt,
-  display-page-numbers: false,
-  use-odd-pagebreak: false,
-  display-header: false,
-  cover-title-size: 30pt,
-  cover-subtitle-size: 22pt,
-  cover-author-size: 20pt,
-  toc-vspace: (1em, 0.5em),
-  cover-publisher-size: 20pt,
-  cover-date-size: 10pt,
-  cover-edition-size: 10pt,
-  dedication-size-offset: 1pt,
-  toc-entry-size: (字号.小四 + 2pt, 字号.小四 + 1pt, 字号.小四),
-  line-spacing: 1.5em,
-  par-spacing: 2em,
-
-  heading: songting-a4.heading
-    + (
-      size: (1em + 4pt, 1em + 1pt, 1em + 1pt, 1em + 1pt, 1em, 1em),
-      weight: ("bold", "bold", "bold", "regular", "regular", "regular"),
-      pagebreak: (true, true, true, true, true),
-    ),
-)
 
 // Helper function to compute final configuration
 #let compute-config(cfg-override: (:)) = {
   // Available paper configurations
   let songting-paper-configs = (
     a4: songting-a4,
-    a5: songting-a5,
-    b6: songting-b6,
   )
 
   // Default to a4 if no paper type specified
@@ -197,16 +161,18 @@
     frame: (
       border-color: blue.darken(10%),
       title-color:white, //标题背景色
-      // body-color: blue.lighten(80%)  
+      body-color: blue.lighten(80%)  //主体背景色
     ),
 
     title-style: (
     weight: "regular",
-    color:black,
-    align: center
+    color:blue.lighten(10%),
+    font:字体.楷体,
+    align: start
   ),
     body-style: (
       align:start,
+      indent:2pt,
     ),
 
     // title: title,
@@ -230,6 +196,65 @@
     dash: "solid" //分隔符样式
   ),
   ..body
+)
+}
+
+//单选题 箱体
+#let single-choice(body,a,b,c,d,answer)={
+
+  showybox(
+  frame: (
+    dash: "dashed",  //边界样式
+    border-color: orange.darken(10%),
+    // body-color: orange.lighten(90%)
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "dashed" //分隔符样式
+  ),
+  body+[
+    #grid(
+    align:center,
+    columns: (1fr, 1fr, 1fr,1fr),
+    rows: (1),
+    row-gutter:0.5em,
+    [A.]+a,
+    [B.]+b,
+    [C.]+c,
+    [D.]+d)],
+    h(2em)+[解：]+answer,
+)
+}
+
+//多选题 箱体
+#let multiple-choice(body,a,b,c,d,analysis,answer)={
+
+  showybox(
+  frame: (
+    dash: "solid",  //边界样式
+    border-color: navy.lighten(10%),
+    body-color: aqua.lighten(90%)
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "solid" //分隔符样式
+  ),
+  body+[（#h(1em)）]+[
+    #grid(
+    align:center,
+    columns: (1fr, 1fr, 1fr,1fr),
+    rows: (1),
+    row-gutter:0.5em,
+    [A.]+a,
+    [B.]+b,
+    [C.]+c,
+    [D.]+d)],
+    h(2em)+[*解：*]+analysis,
+    h(2em)+[*答案：*]+answer,
 )
 }
 
@@ -309,8 +334,8 @@
       "：": ": ", // 冒号
       "?": "？", // 问号
       "!": "！", // 感叹号
-      "(": "（", // 左圆括号
-      ")": "）", // 右圆括号
+      // "(": "（", // 左圆括号
+      // ")": "）", // 右圆括号
       //"[": "【", // 左方括号
       //"]": "】", // 右方括号
     )
@@ -341,6 +366,14 @@
   body-indent: 0em, 
   spacing: cfg.list-spacing
   ) 
+
+
+//设置数学公式字体
+show math.equation: set text(font: (
+  (name: "Libertinus Serif", covers: "latin-in-cjk"), // 西文
+  "SimSun", // 中文
+  "STIX Two Math", // 数学
+))
 
   // Cover page
   if cover == auto {
@@ -585,6 +618,5 @@
   for item in content-map.at("back") {
     item
   }
-
   
 }
