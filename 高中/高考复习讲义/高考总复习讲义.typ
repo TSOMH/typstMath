@@ -21,7 +21,7 @@
     tracking:0.01em //字符间距
   )
 )
-// #set page(columns: 2)
+#set page(columns: 2)
 
 = 集合与常用逻辑用语、不等式
 == 集合
