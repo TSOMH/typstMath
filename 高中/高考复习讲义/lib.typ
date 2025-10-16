@@ -23,6 +23,21 @@
     // "STSongti",
     // "Source Han Serif SC"
   ),
+  仿宋:(
+    (name: "STFangsong", covers: "latin-in-cjk"),
+    "STFangsong"
+  ),
+
+  隶书:(
+    (name: "Times New Roman", covers: "latin-in-cjk"),
+    "LiSu"
+  ),
+
+  霞鹜文楷:(
+    (name: "LXGW WenKai Mono", covers: "latin-in-cjk"),
+    "LXGW WenKai Mono"
+  ),
+  
   // 黑体，属于「无衬线字体」，一般可以等同于英文中的 Sans Serif Font
   // 这一行分别是「Arial（无衬线英文字体）」、「思源黑体（简体）」、「思源黑体」、「黑体（Windows）」、「黑体（MacOS）」
   // 优先选用字重配置更多的思源黑体
@@ -81,8 +96,8 @@
   toc-vspace: (2em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
-    font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
-    size: (22pt, 18pt, 16pt, 14pt, 14pt, 14pt),
+    font: (字体.黑体, 字体.黑体, 字体.霞鹜文楷, 字体.霞鹜文楷, 字体.黑体, 字体.黑体),
+    size: (20pt, 16pt, 14pt, 13pt, 14pt, 14pt),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
     above: (2em, 2em, 2em, 2em, 2em, 2em),
@@ -306,6 +321,8 @@
     tracking: cfg.tracking,
   )
 
+  
+  
 
   show "——": {
     set text(font: "Source Han Serif SC")
@@ -451,7 +468,13 @@
     // Apply alignment for this heading level
     let align-value = array-at(heading-cfg.align, level)
     if align-value != none {
-      align(align-value, heading-content)
+
+      if (level ==1 or level==2 or level == 3 ){
+        place(top + center,float: true, scope: "parent", heading-content)
+      } else {
+        align(align-value, heading-content)
+      }
+      
     } else {
       heading-content
     }
@@ -518,8 +541,9 @@
   if toc {
     pagebreak(weak: true)
     set par(leading: 0.5em)
-    set text(size: cfg.toc-entry-size.last())
 
+    set text(size: cfg.toc-entry-size.last())
+    set align(center)
     // Define outline styles with appropriate spacing for Chinese
     set outline(indent: level => (0pt, 18pt, 28pt).slice(0, calc.min(level + 1, 3)).sum())
     show outline.entry: outrageous.show-entry.with(
@@ -567,6 +591,7 @@
     ..cfg.heading.header-numbly,
   ))
 
+  //页眉
   // Header for main content pages
   set page(header: context {
     grid(
@@ -579,6 +604,8 @@
       line(length: 100%),
     )
   }) if cfg.display-header
+
+  set page(columns: 2)
   // caption
   set figure.caption(separator: cfg.caption.separator)
   show heading: i-figured.reset-counters
@@ -598,7 +625,6 @@
   for item in content-map.at("back") {
     item
   }
-
 
   
 }
