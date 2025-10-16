@@ -61,7 +61,7 @@
 #let songting-a4 = (
   paper: "a4",
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
-  size: 10pt, //正文字号
+  size: 12pt, //正文字号
   display-page-numbers: true,
   use-odd-pagebreak: false,
   cover-title-size: 36pt,
@@ -84,10 +84,10 @@
     font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
     size: (22pt, 18pt, 16pt, 14pt, 14pt, 14pt),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
-    align: (center, center, left, center, left, left),
+    align: (center, center, left, left, left, left),
     above: (2em, 2em, 2em, 2em, 2em, 2em),
     below: (2em, 2em, 2em, 2em, 2em, 2em),
-    pagebreak: (true, true, true, false, true),
+    pagebreak: (true, true, false, false, true),
     header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "", "{5:1}  ", "（{6:1}）  "),
   ),
   caption: (  
@@ -119,7 +119,7 @@
   header-spacing: 0.2em,
   header-font-size-factor: 0.875,
   header-font: 字体.楷体,
-  outline_depth: 4,
+  outline_depth: 3,   //目录深度
   headingone-adjust-char: "  ",
   enum_num: numbly(    //有序列表
     "{1:(1)}",
@@ -598,6 +598,7 @@
   for item in content-map.at("back") {
     item
   }
+
 
   
 }

@@ -61,7 +61,7 @@
 #let songting-a4 = (
   paper: "a4",
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
-  size: 10pt,
+  size: 12pt,
   display-page-numbers: true,
   use-odd-pagebreak: false,
   cover-title-size: 36pt,
