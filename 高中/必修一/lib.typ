@@ -5,11 +5,6 @@
 #import "@preview/modern-nju-thesis:0.4.0": 字号
 #import "@preview/showybox:2.0.4": showybox
 #import "@preview/tablem:0.3.0": tablem, three-line-table 
-#import "@preview/cetz:0.4.0"
-#import "@preview/cetz-venn:0.1.4": venn2
-#import "@preview/tablem:0.3.0": tablem, three-line-table
-#import "@preview/cuti:0.2.1": show-cn-fakebold
-#import "@preview/showybox:2.0.4": showybox
 
 
 
@@ -20,8 +15,8 @@
   宋体: (
     (name: "Times New Roman", covers: "latin-in-cjk"),
     // "LXGW Neo ZhiSong Plus", //  霞鹜新致宋
-    // "SimSun",
-    "Source Han Serif SC",
+    "SimSun",
+    // "Source Han Serif SC",
     // "Source Han Serif",
     // "Noto Serif CJK SC",
     // "Songti SC",
@@ -66,7 +61,7 @@
 #let songting-a4 = (
   paper: "a4",
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
-  size: 12pt,
+  size: 10pt,
   display-page-numbers: true,
   use-odd-pagebreak: false,
   cover-title-size: 36pt,
@@ -82,20 +77,19 @@
   toc-title-align: center,
   toc-level1-font: 字体.黑体,
   toc-other-font: 字体.宋体,
-  toc-entry-size: (14pt, 12pt, 12pt),
+  toc-entry-size: (15pt, 13pt, 11pt),
   toc-vspace: (2em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
-    font: (字体.黑体, 字体.黑体, 字体.宋体, 字体.宋体, 字体.宋体, 字体.宋体),
-    size: (20pt, 18pt, 14pt, 13pt, 14pt, 14pt),
-    weight: ("bold", "medium", "bold", "regular", "regular", "regular"),
+    font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
+    color:(blue,blue,blue,blue,blue,blue),
+    size: (22pt, 16pt, 13pt, 11pt, 14pt, 14pt),
+    weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
-    hanging-indent:(2em, 2em, 1.5em, 1.2em, 1em, 1em),
-    above: (2em, 2em, 1.5em, 1.2em, 1em, 1em),
-    below: (2em, 2em, 1.5em, 1.2em, 1em, 1em),
-    pagebreak: (false, false, false, false, false),
-    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{3:一}、",
-     "{4:1}.", "{5:1}  ", "（{6:1}）  "),
+    above: (2em, 2em, 1.8em, 1.5em, 2em, 2em),
+    below: (2em, 2em, 1.5em, 1.2em, 2em, 2em),
+    pagebreak: (true, true, false, false, false),
+    header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "", "{4:1.}", "{5:1}  ", "（{6:1}）  "),
   ),
   caption: (  
     separator: "  ",
@@ -141,7 +135,6 @@
 )
 
 
-
 // Helper function to compute final configuration
 #let compute-config(cfg-override: (:)) = {
   // Available paper configurations
@@ -168,16 +161,18 @@
     frame: (
       border-color: blue.darken(10%),
       title-color:white, //标题背景色
-      // body-color: blue.lighten(80%)  
+      body-color: blue.lighten(80%)  //主体背景色
     ),
 
     title-style: (
     weight: "regular",
-    color:black,
-    align: center
+    color:blue.lighten(10%),
+    font:字体.楷体,
+    align: start
   ),
     body-style: (
       align:start,
+      indent:2pt,
     ),
 
     // title: title,
@@ -201,6 +196,66 @@
     dash: "solid" //分隔符样式
   ),
   ..body
+)
+}
+
+//单选题 箱体
+#let single-choice(body,a,b,c,d,answer)={
+
+  showybox(
+  frame: (
+    dash: "dashed",  //边界样式
+    border-color: orange.darken(10%),
+    // body-color: orange.lighten(90%)
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "dashed" //分隔符样式
+  ),
+  body+[
+    #grid(
+    align:center,
+    columns: (1fr, 1fr, 1fr,1fr),
+    rows: (1),
+    row-gutter:0.5em,
+    [A.]+a,
+    [B.]+b,
+    [C.]+c,
+    [D.]+d)],
+    h(2em)+[解：]+answer,
+)
+}
+
+//多选题 箱体
+#let multiple-choice(body,a,b,c,d,analysis,answer)={
+
+  showybox(
+  frame: (
+    // body-inset:1em,
+    dash: "solid",  //边界样式
+    border-color: navy.lighten(10%),
+    body-color: aqua.lighten(90%)
+  ),
+  body-style: (
+    align: start,
+  ),
+  sep: (
+    dash: "solid" //分隔符样式
+  ),
+  body+[（#h(1em)）]+[
+    #grid(
+    align:center,
+    columns: (1fr, 1fr, 1fr,1fr),
+    rows: (1),
+    row-gutter:0.5em,
+    [A.]+a,
+    [B.]+b,
+    [C.]+c,
+    [D.]+d)],
+    h(2em)+[解析：]+analysis,
+    h(2em)+[答案：]+answer,
 )
 }
 
@@ -280,8 +335,8 @@
       "：": ": ", // 冒号
       "?": "？", // 问号
       "!": "！", // 感叹号
-      "(": "（", // 左圆括号
-      ")": "）", // 右圆括号
+      // "(": "（", // 左圆括号
+      // ")": "）", // 右圆括号
       //"[": "【", // 左方括号
       //"]": "】", // 右方括号
     )
@@ -313,6 +368,14 @@
   spacing: cfg.list-spacing
   ) 
 
+
+//设置数学公式字体
+show math.equation: set text(font: (
+  (name: "Libertinus Serif", covers: "latin-in-cjk"), // 西文
+  "SimSun", // 中文
+  "STIX Two Math", // 数学
+))
+
   // Cover page
   if cover == auto {
     page(
@@ -338,7 +401,7 @@
         }
         #if date != none {
           v(1em)
-          text(size: cfg.cover-date-size)[#date.display("[year]年[month]月")]
+          text(size: cfg.cover-date-size)[#date.display("[year]年[month]月[day]日")]
         }
 
         #if edition != none {
@@ -370,10 +433,7 @@
   counter(page).update(1)
   set page(numbering: "i") if cfg.display-page-numbers
 
-  //四级标题缩进
-  show heading.where(level: 4): pad.with(left: 1.5em)
-
-  // 自定义标题
+  // Define the heading structure and formatting
   show heading: it => {
     let level = it.level
 
@@ -417,8 +477,6 @@
       heading-content
     }
   }
-
-  
 
   // Style for quotes (use KaiTi font)
   show quote: it => {
@@ -487,7 +545,7 @@
     set outline(indent: level => (0pt, 18pt, 28pt).slice(0, calc.min(level + 1, 3)).sum())
     show outline.entry: outrageous.show-entry.with(
       ..outrageous.presets.typst,
-      font: (字体.宋体, 字体.宋体),
+      font: (字体.宋体, 字体.宋体,字体.宋体),
       vspace: cfg.toc-vspace,
       fill: (align(right, repeat(gap: 0.15em)[.]), align(right, repeat(gap: 0.15em)[.])),
       body-transform: (level, prefix, body) => {
@@ -526,11 +584,9 @@
   set page(numbering: "1") if cfg.display-page-numbers
 
   // Set up heading numbering for main content
-  set heading(
-    numbering: numbly(
+  set heading(numbering: numbly(
     ..cfg.heading.header-numbly,
-  ),
-  )
+  ))
 
   // Header for main content pages
   set page(header: context {
@@ -559,14 +615,9 @@
 
   set heading(numbering: none)
 
-
   // Output back matter
   for item in content-map.at("back") {
     item
   }
-
-  show: show-cn-fakebold
-  show math.equation.where(block: false): it => h(0.25em, weak: true) + it + h(0.25em, weak: true)
-
   
 }
