@@ -102,7 +102,7 @@
 
   ② 求平均变化率：$(Delta y)/(Delta x) = (f(x_0 + Delta x) - f(x_0))/(Delta x)$；
 
-  ③ 求极限，得导数：$f'(x_0) = lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x) $。
+  ③ 求极限：$f'(x_0) = lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x) $。
 ]
 
 #single-choice-no-answer(
