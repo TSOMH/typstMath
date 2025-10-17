@@ -101,8 +101,8 @@
     color:(black,black,blue.darken(30%),purple.darken(50%),black,black),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
-    above: (2em, 2em, 2em, 2em, 2em, 2em),
-    below: (2em, 2em, 2em, 2em, 2em, 2em),
+    above: (2em, 2em, 1em, 1em, 2em, 2em),
+    below: (2em, 1.5em, 1em, 1em, 2em, 2em),
     pagebreak: (true, true, false, false, true),
     header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "", "{5:1}  ", "（{6:1}）  "),
   ),
@@ -714,6 +714,4 @@
   for item in content-map.at("back") {
     item
   }
-
-  
 }
