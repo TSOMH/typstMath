@@ -27,12 +27,6 @@
     (name: "STFangsong", covers: "latin-in-cjk"),
     "STFangsong"
   ),
-
-  隶书:(
-    (name: "Times New Roman", covers: "latin-in-cjk"),
-    "LiSu"
-  ),
-
   霞鹜文楷:(
     (name: "LXGW WenKai Mono", covers: "latin-in-cjk"),
     "LXGW WenKai Mono"
@@ -53,9 +47,15 @@
   ),
   // 楷体
   楷体: ((name: "Times New Roman", covers: "latin-in-cjk"),
-  // "LXGW WenKai", // 霞鹜文楷
   "KaiTi"
   ),
+
+
+  // 楷体
+  杨任东楷书: ((name: "zihun86hao-yangrendongkaishu", covers: "latin-in-cjk"),
+  "zihun86hao-yangrendongkaishu"   
+  ),
+  
 
   // 等宽字体，用于代码块环境，一般可以等同于英文中的 Monospaced Font
   // 这一行分别是「Courier New（Windows 等宽英文字体）」、「思源等宽黑体（简体）」、「思源等宽黑体」、「黑体（Windows）」、「黑体（MacOS）」
@@ -76,7 +76,7 @@
 #let songting-a4 = (
   paper: "a4",
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
-  size: 12pt, //正文字号
+  size: 10pt, //正文字号
   display-page-numbers: true,
   use-odd-pagebreak: false,
   cover-title-size: 36pt,
@@ -96,8 +96,9 @@
   toc-vspace: (2em, 1em),
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
-    font: (字体.黑体, 字体.黑体, 字体.霞鹜文楷, 字体.霞鹜文楷, 字体.黑体, 字体.黑体),
-    size: (20pt, 16pt, 14pt, 13pt, 14pt, 14pt),
+    font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
+    size: (20pt, 16pt, 14pt, 12pt, 14pt, 14pt),
+    color:(black,black,blue.darken(30%),purple.darken(50%),black,black),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
     above: (2em, 2em, 2em, 2em, 2em, 2em),
@@ -118,7 +119,7 @@
     numbering: "[1]"
   ),
   // Base configuration properties
-  main-font: 字体.宋体,
+  main-font: 字体.霞鹜文楷, //正文字体
   title-font: (字体.黑体),
   kai-font: (字体.楷体),
   lang: "zh",
@@ -172,26 +173,50 @@
 
 
 //定义 箱体
-#let def(title: "",..body) = {
-  showybox(  
+#let def(title: "",body) = {
+  showybox(
     frame: (
-      border-color: blue.darken(10%),
-      title-color:white, //标题背景色
-      // body-color: blue.lighten(80%)  
+    dash: "solid", //边框样式
+    // body-color: blue.lighten(80%), //主体背景色
+    title-color:white, //标题背景色
+    border-color: blue.lighten(10%),  //分隔线颜色
+    thickness: (1pt),
+    inset: 1.2em,
+    radius: 1em,
     ),
 
     title-style: (
     weight: "regular",
     color:black,
+    indent:2pt,
     align: center
-  ),
-    body-style: (
-      align:start,
+    ),
+    
+    //分隔符属性
+    sep: (
+      dash: "solid", //分隔符样式
+      gutter:1em,
+      thickness:1pt 
     ),
 
-    // title: title,
+    body-style: (
+      align:left
+    ),
 
-    ..body,
+    shadow: (
+    // color: yellow.lighten(70%),
+    offset: 1pt,
+    ),
+
+
+    title: title,
+    {
+    set par(
+    first-line-indent: (amount: 0em, all: true),
+    leading: 1pt
+    )
+    block(body)
+    }
   )
 }
 
@@ -220,7 +245,6 @@
     
 
   frame: (
-    
     dash: "solid",  //边界样式
     border-color: orange.darken(10%),
     // body-color: orange.lighten(90%)
@@ -258,6 +282,72 @@
     thickness:1pt 
   ),
   ..body,
+)
+}
+
+//单选题 箱体   
+#let single-choice-no-answer(body,choices)={
+  showybox(
+  frame: (
+    dash: "solid",//边界样式
+    inset: 1em, //内边距
+    border-color: blue.darken(10%),
+    body-color: blue.lighten(80%),
+    thickness: (left:1pt),
+    radius: 0em,
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "dashed" //分隔符样式
+  ),
+  // shadow: (
+  //   // color: yellow.lighten(70%),
+  //   offset: 2pt,
+  // ),
+
+    block[
+    #block(body+ "（    ）")
+    #v(0.5em)
+    #grid(
+      columns: (1fr,) * choices.len(),
+      rows: (0.5em),
+      ..choices.enumerate().map(((i, choice)) => {
+        let letter = str.from-unicode(i + 65)
+          return [#(letter + ".") #h(1em) #choice]
+      })
+    )
+  ]
+)
+}
+
+//单选题 箱体
+#let single-choice-with-answer(body,a,b,c,d,answer)={
+
+  showybox(
+  frame: (
+    dash: "dashed",  //边界样式
+    border-color: orange.darken(10%),
+    // body-color: orange.lighten(90%)
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "dashed" //分隔符样式
+  ),
+  body+[
+    #grid(
+    align:center,
+    columns: (1fr, 1fr, 1fr,1fr),
+    rows: (1),
+    row-gutter:0.5em,
+    [A.]+a,
+    [B.]+b,
+    [C.]+c,
+    [D.]+d)],
+    // h(2em)+[解：]+answer,
 )
 }
 
@@ -443,10 +533,15 @@
 
     // Apply text formatting for this heading level
     let heading-content = {
-      set text(font: array-at(heading-cfg.font, level), size: array-at(heading-cfg.size, level), weight: array-at(
-        heading-cfg.weight,
-        level,
-      ))
+      set text(
+        font: array-at(heading-cfg.font, level), 
+        size: array-at(heading-cfg.size, level),
+        weight: array-at(
+          heading-cfg.weight,
+          level,
+        ),
+        fill: array-at(heading-cfg.color, level)
+      )
       // Special handling for front matter headings
       if (
         cfg.headingone-adjust-char != none
@@ -468,13 +563,7 @@
     // Apply alignment for this heading level
     let align-value = array-at(heading-cfg.align, level)
     if align-value != none {
-
-      if (level ==1 or level==2 or level == 3 ){
-        place(top + center,float: true, scope: "parent", heading-content)
-      } else {
-        align(align-value, heading-content)
-      }
-      
+      align(align-value, heading-content)
     } else {
       heading-content
     }
@@ -591,6 +680,8 @@
     ..cfg.heading.header-numbly,
   ))
 
+
+
   //页眉
   // Header for main content pages
   set page(header: context {
@@ -604,8 +695,6 @@
       line(length: 100%),
     )
   }) if cfg.display-header
-
-  set page(columns: 2)
   // caption
   set figure.caption(separator: cfg.caption.separator)
   show heading: i-figured.reset-counters
