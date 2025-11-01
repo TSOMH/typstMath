@@ -4,7 +4,7 @@
 #import "@preview/showybox:2.0.4": showybox
 #import "@preview/cetz:0.4.0"
 #import "@preview/cetz-venn:0.1.4": venn2
-#show math.equation.where(block: false): math.display
+// #show math.equation.where(block: false): math.textb 
 #show: show-cn-fakebold
 #show math.equation.where(block: false): it => h(0.25em, weak: true) + it + h(0.25em, weak: true)
 // #set text(font: ("New Computer Modern", "LXGW WenKai Mono"))
@@ -107,8 +107,22 @@
 
 #single-choice-no-answer(
   [例：设函数$f(x)$的导函数为$f'(x)$，且$f'(x_0)=2$，则$lim_(Delta x -> 0) (f(x_0 + 2 Delta x) - f(x_0))/(Delta x)=$],
-  ("1","4","3","2")
+  (1,4,3,2)
 )
+
+==== 知识点3 导数的几何意义
+函数$f(x)$在点$x = x_0$处的导数的几何意义，就是曲线$y=f(x)$在点$P(x_0,y_0)$处的切线的斜率$k$，即$k=f'(x_0)$.
+
+#block[
+  // 在这个局部作用域内，我们用一条新规则覆盖全局规则
+  // 效果：本区块内的行内公式恢复为默认的“文本样式”
+  #show math.equation.where(block: false): math.text
+  在这个被 block 包围的区域里，我们“拨乱反正”。可以看到，这里的行内分数  $x/y$ 恢复了紧凑的默认样式。这里的求和符号 $sum_(j=1)^m j$ 也恢复了正常。
+  本段落的行距是均匀的，阅读体验很好。
+]
+#single-choice-no-answer([例：曲线$y=x^2 − ln(x)$在$x=0.5$处的切线的斜率为],(1,-1,$sqrt(2)/2$,$e$))
+
+
 
 
 #pagebreak()

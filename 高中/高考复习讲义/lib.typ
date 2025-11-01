@@ -215,7 +215,11 @@
     first-line-indent: (amount: 0em, all: true),
     leading: 1pt
     )
-    block(body)
+    block[
+      #show math.equation.where(block: false): math.display
+      #block(body)
+    ]
+
     }
   )
 }
