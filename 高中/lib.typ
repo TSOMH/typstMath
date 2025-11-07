@@ -373,7 +373,8 @@
 show math.equation: set text(font: (
   (name: "Libertinus Serif", covers: "latin-in-cjk"), // 西文
   "SimSun", // 中文
-  "STIX Two Math", // 数学
+  // "STIX Two Math", // 数学
+  "New Computer Modern Math"
 ))
 
   // Cover page
