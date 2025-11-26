@@ -13,7 +13,7 @@
   // 宋体，属于「有衬线字体」，一般可以等同于英文中的 Serif Font
   // 这一行分别是「新罗马体（有衬线英文字体）」、「宋体（Windows）」、「思源宋体（简体）」、「思源宋体」、「宋体（MacOS）」
   宋体: (
-    (name: "Times New Roman", covers: "latin-in-cjk"),
+    (name: "New Computer Modern Math", covers: "latin-in-cjk"),
     // "LXGW Neo ZhiSong Plus", //  霞鹜新致宋
     "SimSun",
     // "Source Han Serif SC",
@@ -311,13 +311,18 @@
     margin: cfg.margin,
   )
 
-  // Text settings
-  set text(
-    font: cfg.main-font,
-    size: cfg.size,
-    lang: cfg.lang,
-    tracking: cfg.tracking,
-  )
+  //正文字体
+  set text(font: (
+  (name: "Times New Roman", covers: "latin-in-cjk"), // 西文字体
+  "SimSun" // 中文字体
+  ), lang: "zh")
+
+  //公式字体
+  //单独设置数学公式：数学用默认数学字体，公式里的中文回退到宋体
+  show math.equation: set text(font: (
+  "New Computer Modern Math",
+  "Source Han Serif SC",
+  ))
 
 
   show "——": {
@@ -368,14 +373,6 @@
   spacing: cfg.list-spacing
   ) 
 
-
-//设置数学公式字体
-show math.equation: set text(font: (
-  (name: "Libertinus Serif", covers: "latin-in-cjk"), // 西文
-  "SimSun", // 中文
-  // "STIX Two Math", // 数学
-  "New Computer Modern Math"
-))
 
   // Cover page
   if cover == auto {
