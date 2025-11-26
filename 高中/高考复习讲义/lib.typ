@@ -407,14 +407,28 @@
     margin: cfg.margin,
   )
 
-  // Text settings
-  set text(
-    font: cfg.main-font,
-    size: cfg.size,
-    lang: cfg.lang,
-    tracking: cfg.tracking,
-  )
+  // // Text settings
+  // set text(
+  //   font: cfg.main-font,
+  //   size: cfg.size,
+  //   lang: cfg.lang,
+  //   tracking: cfg.tracking,
+  // )
+    //正文字体
+  set text(font: (
+  (name: "Times New Roman", covers: "latin-in-cjk"), // 西文字体
+  "SimSun" // 中文字体
+  ), 
+  size: cfg.size,
+  lang: "zh",
+  tracking: cfg.tracking)
 
+  //公式字体
+  //单独设置数学公式：数学用默认数学字体，公式里的中文回退到宋体
+  show math.equation: set text(font: (
+  "New Computer Modern Math",
+  "Source Han Serif SC",
+  ))
   
   
 
@@ -427,7 +441,7 @@
   let trans_puct_cn(ch) = {
     // 基础标点映射
     let base-replacements = (
-      "。": ".  ",  // 句号
+      "。": ". ",  // 句号
       "，": ",", // 逗号
       ";": "；", // 分号
       "：": ": ", // 冒号
