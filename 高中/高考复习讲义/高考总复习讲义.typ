@@ -107,6 +107,7 @@
 
 #single-choice-no-answer(
   [例：设函数$f(x)$的导函数为$f'(x)$，且$f'(x_0)=2$，则$lim_(Delta x -> 0) (f(x_0 + 2 Delta x) - f(x_0))/(Delta x)=$],
+  
   (1,4,3,2)
 )
 
@@ -115,6 +116,175 @@
 
 
 #single-choice-no-answer([例：曲线$y=x^2 − ln(x)$在$x=0.5$处的切线的斜率为],(1,-1,$sqrt(2)/2$,$e$))
+
+==== 知识点4 基本初等函数的导数公式
+#figure[#table(
+  columns: 2,
+  rows: 25pt,
+  stroke: blue.darken(30%),
+  align: center+horizon,
+  table.header[*基本初等函数*][*导数*],
+
+  [$f(x)=c$(c为常数)], 
+  [$f'(x)=0$],
+
+  [$f(x)=x^n (n in RR)$],
+  [$f'(x)=n x^(n-1)$],
+
+  [$f(x)=sin x$],
+  [$f(x)=cos x$],
+
+  [$f(x)=e^x$], 
+  [$f'(x)=e^x$],
+  
+  [$f(x)=a^x (a>0)$], 
+  [$f'(x)=a^x ln a$],
+
+  [$f(x)=ln x$], 
+  [$f'(x)=1/x$],
+
+  [$f(x)=log_a x (a>0,a!=1)$], 
+  [$f'(x)=1/(x ln a)$],
+
+  [$f(x)=sqrt(x)$], 
+  [$f'(x)=1/(2sqrt(x))$],
+
+  [$f(x)=1/x$], 
+  [$f'(x)=-1/x^2$],
+)]
+
+
+#single-choice-no-answer(
+  [例：已知$f(x)=-1/x^3$,则$f'(x)=$],
+  ($-3/x^3$,$3/x^4$,$1/x$,$-1/x^2$)
+)
+
+==== 知识点5 导数的运算法则
+#def([若$f'(x),g'(x)$存在，则有
+
+(1) $[f(x) plus.minus g(x)]'=f'(x) plus.minus g'(x)$
+
+(2) $[f(x) dot g(x)]'= f'(x) dot g(x)+f(x) dot g'(x)$
+
+(3) $[f(x)/g(x)]' = (f'(x) dot g(x)-f(x) dot g'(x)) / (g^2(x))$
+
+])
+
+#blanks-no-answer([例：若函数$f(x)=x ln x $,则$f'(pi)=$])
+
+==== 知识点6 曲线的切线问题
+*1. “在”型求切线方程*
+
+已知：函数 $f(x)$ 的解析式，求 $f(x)$ 在 $x=x_0$ 或者 $(x_0, f(x_0))$ 处的切线方程.
+
+步骤：
+
+①：求切点 $(x_0, f(x_0))$.
+
+②：求切线斜率 $k = f'(x)$.
+
+③：得出切线方程. 根据直线的点斜式方程得到切线方程： $y - f(x_0) = f'(x_0)(x - x_0)$.
+
+#v(1em) 
+
+*2. “过”型求切线方程*
+
+已知：函数 $f(x)$ 的解析式，求过点 $P_1(x_1, y_1)$ （无论该点是否在 $y=f(x)$ 上）的切线方程.
+
+步骤：
+
+①：设切点 $P_0(x_0, y_0)$
+
+
+②：利用导数求切线斜率 $k=f'(x_0)$；再利用两点坐标求切线斜率 $k = display((y_1 - y_0)/(x_1 - x_0))$;
+
+③：令二者相等，列方程：$ f'(x_0) = display((y_1 - y_0)/(x_1 - x_0))$ ，解出 $x_0$，代入导函数求斜率： $k = f'(x_0)$ 
+
+④：求切线方程. 根据直线的点斜式方程得到切线方程： $y - y_0 = f'(x_0)(x - x_0)$.
+
+#single-choice-no-answer(
+  [例：已知函数$f(x)=x^3-x+1$,则$f(x)$的图像在点(1,1)处的切线方程是],
+  ($4x+y-5=0$,$4x-y-3=0$,$2x+y-3=0$,$2x-y-1=0$)
+  )
+
+
+=== 题型破译
+==== 题型1 导数的概念
+
+#two-col-dashed[
+  #blanks-no-answer([
+    例1-1：已知函数 $f(x)=log_2 x$，则 $limits(lim)_(x->2) frac(f(x)-f(2),2 Delta x)=$ 
+    ],
+    outlined:false
+  )
+
+  #single-choice-no-answer([
+    例1-2：
+    已知函数 $f(x)=x^2 + 1/x$，则 $limits(lim)_(Delta x -> 0) frac(f(1+Delta x)-f(1),x-2) =$],
+    (1,$1/2$,2,4),
+    outlined:false
+  )
+
+  #single-choice-no-answer([
+    变式1-1：
+    已知 $f'(x_0)=4$，则 $limits(lim)_(Delta x -> 0) frac(f(x_0+2 Delta x)-f(x_0),Delta x) =$],
+    (4,2,8,16),
+    outlined:false
+  )
+][
+  #single-choice-no-answer([
+    变式1-2：
+    已知 $f(x)$满足$limits(lim)_(Delta x -> 0) frac(f(x_0 + Delta x)-f(x_0),2 Delta x) = 1 $，则 $f'(x_0)=$],
+    (1,2,$1/2$,3),
+    outlined:false
+  )
+
+  #single-choice-no-answer([
+    变式1-3：
+    已知 $f(x)= -1/2 x^2+ln x $，
+    则$limits(lim)_(Delta x -> 0) frac(f(1 + Delta x)-f(1), Delta x) =$],
+    ($e$,-2,$- 1/2$,0),
+    outlined:false
+  )
+]
+
+
+
+
+
+==== 题型2 导数的运算
+
+#two-col-dashed[
+  #question-no-answer([ 
+    
+    例12-11：求下列函数的导数
+
+    (1)$y=x^2 sin x$
+
+    (2)$y=ln x + 1/x$
+
+    (3)$y=frac(cos x,e^x)$
+
+    (4)$y=ln(x^2+1)$
+    ],
+    outlined: false)
+
+    #question-no-answer([ 
+    例2-2：求下列函数的导数
+
+    (1)$y=-3x^2-5x+6$
+
+    (2)$y=x sin x + e^x $
+
+    (3)$y=frac(ln x,x^2+1)$
+    ],
+    outlined: false)
+
+][
+
+
+]
+
 
 
 

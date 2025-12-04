@@ -101,7 +101,7 @@
     color:(black,black,blue.darken(30%),purple.darken(50%),black,black),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
-    above: (2em, 2em, 1em, 1em, 2em, 2em),
+    above: (2em, 2em, 2em, 1em, 2em, 2em),
     below: (2em, 1.5em, 1em, 1em, 2em, 2em),
     pagebreak: (true, true, false, false, true),
     header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "{1:1}.{2}.{3}  ", "", "{5:1}  ", "（{6:1}）  "),
@@ -289,15 +289,73 @@
 )
 }
 
-//单选题 箱体   
-#let single-choice-no-answer(body,choices)={
+//普通题 箱体   
+#let question-no-answer(body,outlined: true)={
+  // 定义根据参数变化的样式变量
+  let bg-color = if outlined { blue.lighten(80%) } else { white }
+  let border-c = if outlined { blue.darken(10%) } else { white }
+  let border-w = if outlined { (left: 1pt) } else { 0pt }
+
   showybox(
   frame: (
     dash: "solid",//边界样式
     inset: 1em, //内边距
-    border-color: blue.darken(10%),
-    body-color: blue.lighten(80%),
-    thickness: (left:1pt),
+    border-color: border-c,
+    body-color: bg-color,
+    thickness: border-w,
+    radius: 0em,
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "dashed" //分隔符样式
+  ),
+    block(body)
+)
+}
+
+//填空题 箱体   
+#let blanks-no-answer(body,outlined: true)={
+  // 定义根据参数变化的样式变量
+  let bg-color = if outlined { blue.lighten(80%) } else { white }
+  let border-c = if outlined { blue.darken(10%) } else { white }
+  let border-w = if outlined { (left: 1pt) } else { 0pt }
+
+  showybox(
+  frame: (
+    dash: "solid",//边界样式
+    inset: 1em, //内边距
+    border-color: border-c,
+    body-color: bg-color,
+    thickness: border-w,
+    radius: 0em,
+  ),
+  body-style: (
+    align: left
+  ),
+  sep: (
+    dash: "dashed" //分隔符样式
+  ),
+  block(body+ "________.")
+)
+}
+
+
+//单选题 箱体   
+#let single-choice-no-answer(body,choices,outlined: true)={
+  // 定义根据参数变化的样式变量
+  let bg-color = if outlined { blue.lighten(80%) } else { white }
+  let border-c = if outlined { blue.darken(10%) } else { white }
+  let border-w = if outlined { (left: 1pt) } else { 0pt }
+
+  showybox(
+  frame: (
+    dash: "solid",//边界样式
+    inset: 1em, //内边距
+    border-color: border-c,
+    body-color: bg-color,
+    thickness: border-w,
     radius: 0em,
   ),
   body-style: (
@@ -312,7 +370,7 @@
   // ),
 
     block[
-    #block(body+ "（    ）")
+    #block(body+ "(    )")
     #v(0.5em)
     #grid(
       columns: (1fr,) * choices.len(),
@@ -354,6 +412,28 @@
     // h(2em)+[解：]+answer,
 )
 }
+
+#let two-col-dashed(left-content, right-content) = {
+  grid(
+    columns: (1fr, 1fr),
+    align: top + left,
+    
+    // 1. 设置内边距：给文字周围留出空间，这样线就不会紧贴文字
+    inset: (x: 1em, y: 0em), 
+
+    // 2. 设置边框线：只在第二列 (x=1) 的左侧画一条虚线
+    stroke: (x, y) => if x == 1 { 
+      (left: (thickness: 1pt, dash: "dashed", paint: blue.darken(10%))) 
+    } else { 
+      none 
+    },
+
+    // 内容
+    left-content,
+    right-content
+  )
+}
+
 
 // Main book template function
 #let songting-book(
