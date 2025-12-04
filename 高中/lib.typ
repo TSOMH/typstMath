@@ -4,7 +4,7 @@
 #import "@preview/i-figured:0.2.4"
 #import "@preview/modern-nju-thesis:0.4.0": 字号
 #import "@preview/showybox:2.0.4": showybox
-#import "@preview/tablem:0.3.0": tablem, three-line-table 
+#import "@preview/tablem:0.3.0": tablem, three-line-table
 
 
 
@@ -34,14 +34,13 @@
     // "SimHei",
     // "Heiti SC",
     // "STHeiti",
-
   ),
   // 楷体
-  楷体: ((name: "Times New Roman", covers: "latin-in-cjk"),
-  // "LXGW WenKai", // 霞鹜文楷
-  "KaiTi"
+  楷体: (
+    (name: "Times New Roman", covers: "latin-in-cjk"),
+    // "LXGW WenKai", // 霞鹜文楷
+    "KaiTi",
   ),
-
   // 等宽字体，用于代码块环境，一般可以等同于英文中的 Monospaced Font
   // 这一行分别是「Courier New（Windows 等宽英文字体）」、「思源等宽黑体（简体）」、「思源等宽黑体」、「黑体（Windows）」、「黑体（MacOS）」
   等宽: (
@@ -82,7 +81,7 @@
   heading: (
     //font: ("SimHei", "SimHei", "SimHei", "SimHei", "SimHei"),
     font: (字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体, 字体.黑体),
-    color:(blue,blue,blue,blue,blue,blue),
+    color: (blue, blue, blue, blue, blue, blue),
     size: (22pt, 16pt, 13pt, 11pt, 14pt, 14pt),
     weight: ("bold", "medium", "medium", "regular", "regular", "regular"),
     align: (center, center, left, left, left, left),
@@ -91,7 +90,7 @@
     pagebreak: (true, true, false, false, false),
     header-numbly: ("第{1:一}章 ", "{1:1}.{2} ", "", "{4:1.}", "{5:1}  ", "（{6:1}）  "),
   ),
-  caption: (  
+  caption: (
     separator: "  ",
     font: 字体.楷体,
     numbering: "1 - 1",
@@ -99,9 +98,9 @@
   ),
   footnote: (
     font: 字体.楷体,
-    size: 0.8em, 
-    entry_gap: 0.5em, 
-    numbering: "[1]"
+    size: 0.8em,
+    entry_gap: 0.5em,
+    numbering: "[1]",
   ),
   // Base configuration properties
   main-font: 字体.宋体,
@@ -115,14 +114,14 @@
   indent: 2em,
   justify: true,
   header-rule: false,
-  
   display-header: true,
   header-spacing: 0.2em,
   header-font-size-factor: 0.875,
   header-font: 字体.楷体,
   outline_depth: 4,
   headingone-adjust-char: "  ",
-  enum_num: numbly(    //有序列表
+  enum_num: numbly(
+    //有序列表
     "{1:(1)}",
     "{2:①}",
     "{3:1°}",
@@ -131,7 +130,7 @@
   ),
   force-zh-puct: true,
   list-spacing: 1em,
-  quote-inset: 2em
+  quote-inset: 2em,
 )
 
 
@@ -156,23 +155,23 @@
 
 
 //定义 箱体
-#let def(title: "",..body) = {
-  showybox(  
+#let def(title: "", ..body) = {
+  showybox(
     frame: (
       border-color: blue.darken(10%),
-      title-color:white, //标题背景色
-      body-color: blue.lighten(80%)  //主体背景色
+      title-color: white, //标题背景色
+      body-color: blue.lighten(80%), //主体背景色
     ),
 
     title-style: (
-    weight: "regular",
-    color:blue.lighten(10%),
-    font:字体.楷体,
-    align: start
-  ),
+      weight: "regular",
+      color: blue.lighten(10%),
+      font: 字体.楷体,
+      align: start,
+    ),
     body-style: (
-      align:start,
-      indent:2pt,
+      align: start,
+      indent: 2pt,
     ),
 
     // title: title,
@@ -182,81 +181,78 @@
 }
 
 //说明 箱体
-#let explanation(color:orange, ..body)={
+#let explanation(color: orange, ..body) = {
   showybox(
-  frame: (
-    dash: "dashed",  //边界样式
-    border-color: orange.darken(10%),
-    // body-color: orange.lighten(90%)
-  ),
-  body-style: (
-    align: left
-  ),
-  sep: (
-    dash: "solid" //分隔符样式
-  ),
-  ..body
-)
+    frame: (
+      dash: "dashed", //边界样式
+      border-color: orange.darken(10%),
+      // body-color: orange.lighten(90%)
+    ),
+    body-style: (
+      align: left,
+    ),
+    sep: (
+      dash: "solid", //分隔符样式
+    ),
+    ..body,
+  )
 }
 
 //单选题 箱体
-#let single-choice(body,a,b,c,d,answer)={
-
+#let single-choice(body, a, b, c, d, answer) = {
   showybox(
-  frame: (
-    dash: "dashed",  //边界样式
-    border-color: orange.darken(10%),
-    // body-color: orange.lighten(90%)
-  ),
-  body-style: (
-    align: left
-  ),
-  sep: (
-    dash: "dashed" //分隔符样式
-  ),
-  body+[
-    #grid(
-    align:center,
-    columns: (1fr, 1fr, 1fr,1fr),
-    rows: (1),
-    row-gutter:0.5em,
-    [A.]+a,
-    [B.]+b,
-    [C.]+c,
-    [D.]+d)],
-    h(2em)+[解：]+answer,
-)
+    frame: (
+      dash: "dashed", //边界样式
+      border-color: orange.darken(10%),
+      // body-color: orange.lighten(90%)
+    ),
+    body-style: (
+      align: left,
+    ),
+    sep: (
+      dash: "dashed", //分隔符样式
+    ),
+    body
+      + [
+        #grid(
+          align: center,
+          columns: (1fr, 1fr, 1fr, 1fr),
+          rows: 1,
+          row-gutter: 0.5em,
+          [A.] + a, [B.] + b, [C.] + c, [D.] + d,
+        )],
+    h(2em) + [解：] + answer,
+  )
 }
 
 //多选题 箱体
-#let multiple-choice(body,a,b,c,d,analysis,answer)={
-
+#let multiple-choice(body, a, b, c, d, analysis, answer) = {
   showybox(
-  frame: (
-    // body-inset:1em,
-    dash: "solid",  //边界样式
-    border-color: navy.lighten(10%),
-    body-color: aqua.lighten(90%)
-  ),
-  body-style: (
-    align: start,
-  ),
-  sep: (
-    dash: "solid" //分隔符样式
-  ),
-  body+[（#h(1em)）]+[
-    #grid(
-    align:center,
-    columns: (1fr, 1fr, 1fr,1fr),
-    rows: (1),
-    row-gutter:0.5em,
-    [A.]+a,
-    [B.]+b,
-    [C.]+c,
-    [D.]+d)],
-    h(2em)+[解析：]+analysis,
-    h(2em)+[答案：]+answer,
-)
+    frame: (
+      // body-inset:1em,
+      dash: "solid", //边界样式
+      border-color: navy.lighten(10%),
+      body-color: aqua.lighten(90%),
+    ),
+    body-style: (
+      align: start,
+    ),
+    sep: (
+      dash: "solid", //分隔符样式
+    ),
+    body
+      + [（#h(1em)）]
+      + [
+        #grid(
+          align: center,
+          columns: (1fr, 1fr, 1fr, 1fr),
+          rows: 1,
+          row-gutter: 0.5em,
+          [A.] + a, [B.] + b, [C.] + c, [D.] + d,
+        )],
+    h(2em) + [解析：] + analysis,
+    h(2em) + [答案：] + answer,
+  )
 }
 
 // Main book template function
@@ -269,9 +265,9 @@
   edition: none,
   cover: auto,
   dedication: none,
-  underline:(
-    offset:5pt,
-    evade:true
+  underline: (
+    offset: 5pt,
+    evade: true,
   ),
   toc: true,
   front-matter-headings: ("前言", "目录", "序言", "跋", "自序", "内容简介", "内容提要"),
@@ -298,11 +294,11 @@
   set document(title: title, author: author, date: date)
 
   // 有序列表设置
-  set enum(   
+  set enum(
     full: true,
     numbering: cfg.enum_num,
     number-align: start,
-    indent: cfg.indent
+    indent: cfg.indent,
   )
 
   // Page settings
@@ -312,16 +308,19 @@
   )
 
   //正文字体
-  set text(font: (
-  (name: "Times New Roman", covers: "latin-in-cjk"), // 西文字体
-  "SimSun" // 中文字体
-  ), lang: "zh")
+  set text(
+    font: (
+      (name: "Times New Roman", covers: "latin-in-cjk"), // 西文字体
+      "SimSun", // 中文字体
+    ),
+    lang: "zh",
+  )
 
   //公式字体
   //单独设置数学公式：数学用默认数学字体，公式里的中文回退到宋体
   show math.equation: set text(font: (
-  "New Computer Modern Math",
-  "Source Han Serif SC",
+    "New Computer Modern Math",
+    "Source Han Serif SC",
   ))
 
 
@@ -334,7 +333,7 @@
   let trans_puct_cn(ch) = {
     // 基础标点映射
     let base-replacements = (
-      "。": ".  ",  // 句号
+      "。": ".  ", // 句号
       "，": ",", // 逗号
       ";": "；", // 分号
       "：": ": ", // 冒号
@@ -365,13 +364,13 @@
     justify: cfg.justify,
   )
 
-  
+
   set list(
-  marker: ([•]+" ", [--]+" ",), 
-  indent: cfg.indent, 
-  body-indent: 0em, 
-  spacing: cfg.list-spacing
-  ) 
+    marker: ([•] + " ", [--] + " "),
+    indent: cfg.indent,
+    body-indent: 0em,
+    spacing: cfg.list-spacing,
+  )
 
 
   // Cover page
@@ -424,7 +423,6 @@
       ]
     ]
   }
-
 
 
   // Start front matter with roman numerals (if page numbers are displayed)
@@ -480,24 +478,24 @@
   show quote: it => {
     let content = it.body
     let is-poem = it.attribution == [poem]
-    let attribution = if it.attribution != none { 
+    let attribution = if it.attribution != none {
       align(end, [--- #it.attribution])
     }
 
     block(
-	    inset: cfg.quote-inset,
-	    if is-poem {
-	      set par(justify: true)
-	      align(center, text(font: cfg.kai-font)[#content])
-	    } else {
-	      set text(font: cfg.kai-font, size: cfg.size)
-	      if it.quotes == true {
-		quotes(it.content)
-	      } else {
-		content
-	      }
-	      attribution
-	    }
+      inset: cfg.quote-inset,
+      if is-poem {
+        set par(justify: true)
+        align(center, text(font: cfg.kai-font)[#content])
+      } else {
+        set text(font: cfg.kai-font, size: cfg.size)
+        if it.quotes == true {
+          quotes(it.content)
+        } else {
+          content
+        }
+        attribution
+      },
     )
   }
 
@@ -543,7 +541,7 @@
     set outline(indent: level => (0pt, 18pt, 28pt).slice(0, calc.min(level + 1, 3)).sum())
     show outline.entry: outrageous.show-entry.with(
       ..outrageous.presets.typst,
-      font: (字体.宋体, 字体.宋体,字体.宋体),
+      font: (字体.宋体, 字体.宋体, 字体.宋体),
       vspace: cfg.toc-vspace,
       fill: (align(right, repeat(gap: 0.15em)[.]), align(right, repeat(gap: 0.15em)[.])),
       body-transform: (level, prefix, body) => {
@@ -593,8 +591,8 @@
       gutter: 10pt,
       // Space between rows
       align(center)[#text(font: cfg.kai-font, size: cfg.size * cfg.header-font-size-factor)[#hydra(1) #if (
-            cfg.header-suffix != none
-          ) { cfg.header-suffix } else { "" }]],
+          cfg.header-suffix != none
+        ) { cfg.header-suffix } else { "" }]],
       line(length: 100%),
     )
   }) if cfg.display-header
@@ -617,5 +615,4 @@
   for item in content-map.at("back") {
     item
   }
-  
 }

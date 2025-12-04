@@ -4,7 +4,7 @@
 #import "@preview/showybox:2.0.4": showybox
 #import "@preview/cetz:0.4.0"
 #import "@preview/cetz-venn:0.1.4": venn2
-// #show math.equation.where(block: false): math.textb 
+// #show math.equation.where(block: false): math.textb
 #show: show-cn-fakebold
 #show math.equation.where(block: false): it => h(0.25em, weak: true) + it + h(0.25em, weak: true)
 // #set text(font: ("New Computer Modern", "LXGW WenKai Mono"))
@@ -19,14 +19,14 @@
   title: "高考数学总复习",
   // subtitle: "圆锥曲线拔高",
   author: "许老师",
-    cfg: (
+  cfg: (
     paper: "a4",
-    indent: 2em,        // 修改首行缩进
-    line-spacing: 1em,  // 修改行距
+    indent: 2em, // 修改首行缩进
+    line-spacing: 1em, // 修改行距
     force-zh-puct: true, // 关闭标点自动转换
-    par-spacing:1.2em, //段距
-    tracking:0.01em //字符间距
-  )
+    par-spacing: 1.2em, //段距
+    tracking: 0.01em, //字符间距
+  ),
 )
 
 = 集合与常用逻辑用语、不等式
@@ -72,105 +72,96 @@
 
 #def()[
 
-1.变化率：变化率是相关的两个量“增量的比值”。如气球的平均膨胀率是半径的增量与体积增量的比值.
+  1.变化率：变化率是相关的两个量“增量的比值”。如气球的平均膨胀率是半径的增量与体积增量的比值.
 
-2.平均变化率：一般地，函数$f(x)$在区间$[x_1,x_2]$上的平均变化率为：$(f(x_2)-f(x_1))/(x_2-x_1).$
+  2.平均变化率：一般地，函数$f(x)$在区间$[x_1,x_2]$上的平均变化率为：$(f(x_2)-f(x_1))/(x_2-x_1).$
 
-3.求函数的平均变化率通常用“两步”法：
+  3.求函数的平均变化率通常用“两步”法：
 
-①作差：$Delta y = f(x_2)-f(x_1)$,$Delta x = x_2-x_1$.
+  ①作差：$Delta y = f(x_2)-f(x_1)$,$Delta x = x_2-x_1$.
 
-②作商：对所求得的差作商，即$(Delta y) / (Delta x) = (f(x_2)-f(x_1))/(x_2-x_1).$
+  ②作商：对所求得的差作商，即$(Delta y) / (Delta x) = (f(x_2)-f(x_1))/(x_2-x_1).$
 ]
 
 #single-choice-no-answer(
   [例：函数在区间上的平均变化率为],
-  ("6","3","2","4")
+  ("6", "3", "2", "4"),
 )
 
 ==== 知识点2 导数的概念
 
 #def()[
-1.定义：
-  函数 $f(x)$ 在 $x = x_0$ 处瞬时变化率是 $ lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x)$,我们称它为函数 $y = f(x)$ 在 $x = x_0$ 处的导数，记作 $ f'(x_0) quad 或 quad   y'|_(x=x_0)  $
-  
+  1.定义：
+  函数 $f(x)$ 在 $x = x_0$ 处瞬时变化率是 $lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x)$,我们称它为函数 $y = f(x)$ 在 $x = x_0$ 处的导数，记作 $ f'(x_0) quad 或 quad y'|_(x=x_0) $
+
   即 $ f'(x_0) = lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x) $
 
-2.定义法求导数步骤：
+  2.定义法求导数步骤：
 
   ① 求函数的增量：$Delta y = f(x_0 + Delta x) - f(x_0)$；
 
   ② 求平均变化率：$(Delta y)/(Delta x) = (f(x_0 + Delta x) - f(x_0))/(Delta x)$；
 
-  ③ 求极限：$f'(x_0) = lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x) $。
+  ③ 求极限：$f'(x_0) = lim_(Delta x -> 0) (Delta y)/(Delta x) = lim_(Delta x -> 0) (f(x_0 + Delta x) - f(x_0))/(Delta x)$。
 ]
 
 #single-choice-no-answer(
   [例：设函数$f(x)$的导函数为$f'(x)$，且$f'(x_0)=2$，则$lim_(Delta x -> 0) (f(x_0 + 2 Delta x) - f(x_0))/(Delta x)=$],
-  
-  (1,4,3,2)
+
+  (1, 4, 3, 2),
 )
 
 ==== 知识点3 导数的几何意义
 函数$f(x)$在点$x = x_0$处的导数的几何意义，就是曲线$y=f(x)$在点$P(x_0,y_0)$处的切线的斜率$k$，即$k=f'(x_0)$.
 
 
-#single-choice-no-answer([例：曲线$y=x^2 − ln(x)$在$x=0.5$处的切线的斜率为],(1,-1,$sqrt(2)/2$,$e$))
+#single-choice-no-answer([例：曲线$y=x^2 − ln(x)$在$x=0.5$处的切线的斜率为], (1, -1, $sqrt(2)/2$, $e$))
 
 ==== 知识点4 基本初等函数的导数公式
 #figure[#table(
   columns: 2,
   rows: 25pt,
   stroke: blue.darken(30%),
-  align: center+horizon,
+  align: center + horizon,
   table.header[*基本初等函数*][*导数*],
 
-  [$f(x)=c$(c为常数)], 
-  [$f'(x)=0$],
+  [$f(x)=c$(c为常数)], [$f'(x)=0$],
 
-  [$f(x)=x^n (n in RR)$],
-  [$f'(x)=n x^(n-1)$],
+  [$f(x)=x^n (n in RR)$], [$f'(x)=n x^(n-1)$],
 
-  [$f(x)=sin x$],
-  [$f(x)=cos x$],
+  [$f(x)=sin x$], [$f(x)=cos x$],
 
-  [$f(x)=e^x$], 
-  [$f'(x)=e^x$],
-  
-  [$f(x)=a^x (a>0)$], 
-  [$f'(x)=a^x ln a$],
+  [$f(x)=e^x$], [$f'(x)=e^x$],
 
-  [$f(x)=ln x$], 
-  [$f'(x)=1/x$],
+  [$f(x)=a^x (a>0)$], [$f'(x)=a^x ln a$],
 
-  [$f(x)=log_a x (a>0,a!=1)$], 
-  [$f'(x)=1/(x ln a)$],
+  [$f(x)=ln x$], [$f'(x)=1/x$],
 
-  [$f(x)=sqrt(x)$], 
-  [$f'(x)=1/(2sqrt(x))$],
+  [$f(x)=log_a x (a>0,a!=1)$], [$f'(x)=1/(x ln a)$],
 
-  [$f(x)=1/x$], 
-  [$f'(x)=-1/x^2$],
+  [$f(x)=sqrt(x)$], [$f'(x)=1/(2sqrt(x))$],
+
+  [$f(x)=1/x$], [$f'(x)=-1/x^2$],
 )]
 
 
 #single-choice-no-answer(
   [例：已知$f(x)=-1/x^3$,则$f'(x)=$],
-  ($-3/x^3$,$3/x^4$,$1/x$,$-1/x^2$)
+  ($-3/x^3$, $3/x^4$, $1/x$, $-1/x^2$),
 )
 
 ==== 知识点5 导数的运算法则
 #def([若$f'(x),g'(x)$存在，则有
 
-(1) $[f(x) plus.minus g(x)]'=f'(x) plus.minus g'(x)$
+  (1) $[f(x) plus.minus g(x)]'=f'(x) plus.minus g'(x)$
 
-(2) $[f(x) dot g(x)]'= f'(x) dot g(x)+f(x) dot g'(x)$
+  (2) $[f(x) dot g(x)]'= f'(x) dot g(x)+f(x) dot g'(x)$
 
-(3) $[f(x)/g(x)]' = (f'(x) dot g(x)-f(x) dot g'(x)) / (g^2(x))$
+  (3) $[f(x)/g(x)]' = (f'(x) dot g(x)-f(x) dot g'(x)) / (g^2(x))$
 
 ])
 
-#blanks-no-answer([例：若函数$f(x)=x ln x $,则$f'(pi)=$])
+#blanks-no-answer([例：若函数$f(x)=x ln x$,则$f'(pi)=$])
 
 ==== 知识点6 曲线的切线问题
 *1. “在”型求切线方程*
@@ -185,7 +176,7 @@
 
 ③：得出切线方程. 根据直线的点斜式方程得到切线方程： $y - f(x_0) = f'(x_0)(x - x_0)$.
 
-#v(1em) 
+#v(1em)
 
 *2. “过”型求切线方程*
 
@@ -198,53 +189,58 @@
 
 ②：利用导数求切线斜率 $k=f'(x_0)$；再利用两点坐标求切线斜率 $k = display((y_1 - y_0)/(x_1 - x_0))$;
 
-③：令二者相等，列方程：$ f'(x_0) = display((y_1 - y_0)/(x_1 - x_0))$ ，解出 $x_0$，代入导函数求斜率： $k = f'(x_0)$ 
+③：令二者相等，列方程：$f'(x_0) = display((y_1 - y_0)/(x_1 - x_0))$ ，解出 $x_0$，代入导函数求斜率： $k = f'(x_0)$
 
 ④：求切线方程. 根据直线的点斜式方程得到切线方程： $y - y_0 = f'(x_0)(x - x_0)$.
 
 #single-choice-no-answer(
   [例：已知函数$f(x)=x^3-x+1$,则$f(x)$的图像在点(1,1)处的切线方程是],
-  ($4x+y-5=0$,$4x-y-3=0$,$2x+y-3=0$,$2x-y-1=0$)
-  )
+  ($4x+y-5=0$, $4x-y-3=0$, $2x+y-3=0$, $2x-y-1=0$),
+)
 
 
 === 题型破译
 ==== 题型1 导数的概念
 
 #two-col-dashed[
-  #blanks-no-answer([
-    例1-1：已知函数 $f(x)=log_2 x$，则 $limits(lim)_(x->2) frac(f(x)-f(2),2 Delta x)=$ 
+  #blanks-no-answer(
+    [
+      例1-1：已知函数 $f(x)=log_2 x$，则 $limits(lim)_(x->2) frac(f(x)-f(2), 2 Delta x)=$
     ],
-    outlined:false
+    outlined: false,
   )
 
-  #single-choice-no-answer([
-    例1-2：
-    已知函数 $f(x)=x^2 + 1/x$，则 $limits(lim)_(Delta x -> 0) frac(f(1+Delta x)-f(1),x-2) =$],
-    (1,$1/2$,2,4),
-    outlined:false
+  #single-choice-no-answer(
+    [
+      例1-2：
+      已知函数 $f(x)=x^2 + 1/x$，则 $limits(lim)_(Delta x -> 0) frac(f(1+Delta x)-f(1), x-2) =$],
+    (1, $1/2$, 2, 4),
+    outlined: false,
   )
 
-  #single-choice-no-answer([
-    变式1-1：
-    已知 $f'(x_0)=4$，则 $limits(lim)_(Delta x -> 0) frac(f(x_0+2 Delta x)-f(x_0),Delta x) =$],
-    (4,2,8,16),
-    outlined:false
+  #single-choice-no-answer(
+    [
+      变式1-1：
+      已知 $f'(x_0)=4$，则 $limits(lim)_(Delta x -> 0) frac(f(x_0+2 Delta x)-f(x_0), Delta x) =$],
+    (4, 2, 8, 16),
+    outlined: false,
   )
 ][
-  #single-choice-no-answer([
-    变式1-2：
-    已知 $f(x)$满足$limits(lim)_(Delta x -> 0) frac(f(x_0 + Delta x)-f(x_0),2 Delta x) = 1 $，则 $f'(x_0)=$],
-    (1,2,$1/2$,3),
-    outlined:false
+  #single-choice-no-answer(
+    [
+      变式1-2：
+      已知 $f(x)$满足$limits(lim)_(Delta x -> 0) frac(f(x_0 + Delta x)-f(x_0), 2 Delta x) = 1$，则 $f'(x_0)=$],
+    (1, 2, $1/2$, 3),
+    outlined: false,
   )
 
-  #single-choice-no-answer([
-    变式1-3：
-    已知 $f(x)= -1/2 x^2+ln x $，
-    则$limits(lim)_(Delta x -> 0) frac(f(1 + Delta x)-f(1), Delta x) =$],
-    ($e$,-2,$- 1/2$,0),
-    outlined:false
+  #single-choice-no-answer(
+    [
+      变式1-3：
+      已知 $f(x)= -1/2 x^2+ln x$，
+      则$limits(lim)_(Delta x -> 0) frac(f(1 + Delta x)-f(1), Delta x) =$],
+    ($e$, -2, $- 1/2$, 0),
+    outlined: false,
   )
 ]
 
@@ -256,30 +252,33 @@
 
 #two-col-dashed[
 
-  #question-no-answer([
-    例1-1：求下列函数的导数
+  #question-no-answer(
+    [
+      例1-1：求下列函数的导数
 
-    (1)$y=x^2 sin x$
+      (1)$y=x^2 sin x$
 
-    (2)$y=ln x + 1/x$
+      (2)$y=ln x + 1/x$
 
-    (3)$y=frac(cos x,e^x)$
+      (3)$y=frac(cos x, e^x)$
 
-    (4)$y=ln(x^2+1)$
+      (4)$y=ln(x^2+1)$
     ],
-    outlined: false
-    )
+    outlined: false,
+  )
 
-    #question-no-answer([ 
-    例2-2：求下列函数的导数
+  #question-no-answer(
+    [
+      例2-2：求下列函数的导数
 
-    (1)$y=-3x^2-5x+6$
+      (1)$y=-3x^2-5x+6$
 
-    (2)$y=x sin x + e^x $
+      (2)$y=x sin x + e^x$
 
-    (3)$y=frac(ln x,x^2+1)$
+      (3)$y=frac(ln x, x^2+1)$
     ],
-    outlined: false)
+    outlined: false,
+  )
 
 ][
 
@@ -335,7 +334,7 @@
 === 奔驰定理与四心问题（五大题型）
 === 向量中的隐圆问题（五大题型）
 === 一网打尽平面向量中的范围与最值问题（十大题型）
-=== 平面向量与复数背景下的新定义问题（六大题型）  
+=== 平面向量与复数背景下的新定义问题（六大题型）
 
 = 数列
 == 数列的基本知识与概念
@@ -422,22 +421,22 @@
 
 #question()[【典例1-1】（2024·陕西安康·模拟预测）已知椭圆$C:x^2/a^2+y^2/b^2=1(a>b>0)$的左､右焦点分别为$F_1,F_2$，上､下顶点分别为$A_1,A_2$，四边形$A_1 F_1 A_2 F_2$的面积为$2sqrt(2)$且有一个内角为$pi/3$.
 
-(1)求椭圆$C$的标准方程；
+  (1)求椭圆$C$的标准方程；
 
-(2)若以线段$F_1,F_2$为直径的圆与椭圆$C$无公共点，过点$A(1,3)$的直线与椭圆$C$交于两点$P,Q$（$P$点在$Q$点的上方），线段$P,Q$上存在点$M$，使得$(|A P|) / (|A Q|)=(|M P|) / (|M Q|)$，求$|M F_1| +|M F_2|$的最小值.
+  (2)若以线段$F_1,F_2$为直径的圆与椭圆$C$无公共点，过点$A(1,3)$的直线与椭圆$C$交于两点$P,Q$（$P$点在$Q$点的上方），线段$P,Q$上存在点$M$，使得$(|A P|) / (|A Q|)=(|M P|) / (|M Q|)$，求$|M F_1| +|M F_2|$的最小值.
 
 
 ][解析：
 
-（1）由题意可得$2 sqrt(3) = 1/2 a^2 sin pi/3$，可得$a=2$，$b=a sin pi/6 =1$,或$b=a sin pi/3 =sqrt(3)$,
+  （1）由题意可得$2 sqrt(3) = 1/2 a^2 sin pi/3$，可得$a=2$，$b=a sin pi/6 =1$,或$b=a sin pi/3 =sqrt(3)$,
 
-所以椭圆方程为：$x^2 /4 + y^2 =1$,或$x^2 /4 + y^2/3 =1.$
+  所以椭圆方程为：$x^2 /4 + y^2 =1$,或$x^2 /4 + y^2/3 =1.$
 
-（2）由以线段$|F_1 F_2|$为直径的圆与椭圆$C$无公共点，得$b>c$，所以椭圆标准方程为：$x^2 /4 + y^2/3 =1.$
+  （2）由以线段$|F_1 F_2|$为直径的圆与椭圆$C$无公共点，得$b>c$，所以椭圆标准方程为：$x^2 /4 + y^2/3 =1.$
 
-因为$1/1+3^2/3>1$，所以点A在椭圆$C$外.设$P(x_1,y_1),Q(x_2,y_2),M(x_0,y_0):$
+  因为$1/1+3^2/3>1$，所以点A在椭圆$C$外.设$P(x_1,y_1),Q(x_2,y_2),M(x_0,y_0):$
 
-①当直线$P Q$的斜率存在时,
+  ①当直线$P Q$的斜率存在时,
 ]
 
 
