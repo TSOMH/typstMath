@@ -259,13 +259,13 @@
   #question-no-answer([
     例1-1：求下列函数的导数
 
-    $y=x^2 sin x$
+    (1)$y=x^2 sin x$
 
-    $y=ln x + 1/x$
+    (2)$y=ln x + 1/x$
 
-    $y=frac(cos x,e^x)$
+    (3)$y=frac(cos x,e^x)$
 
-    $y=ln(x^2+1)$
+    (4)$y=ln(x^2+1)$
     ],
     outlined: false
     )
