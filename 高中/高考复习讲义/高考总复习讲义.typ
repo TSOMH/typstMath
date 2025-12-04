@@ -255,19 +255,20 @@
 ==== 题型2 导数的运算
 
 #two-col-dashed[
-  #question-no-answer([ 
-    
-    例12-11：求下列函数的导数
 
-    (1)$y=x^2 sin x$
+  #question-no-answer([
+    例1-1：求下列函数的导数
 
-    (2)$y=ln x + 1/x$
+    $y=x^2 sin x$
 
-    (3)$y=frac(cos x,e^x)$
+    $y=ln x + 1/x$
 
-    (4)$y=ln(x^2+1)$
+    $y=frac(cos x,e^x)$
+
+    $y=ln(x^2+1)$
     ],
-    outlined: false)
+    outlined: false
+    )
 
     #question-no-answer([ 
     例2-2：求下列函数的导数

@@ -311,7 +311,12 @@
   sep: (
     dash: "dashed" //分隔符样式
   ),
-    block(body)
+  block({
+      // 修复2: 强制取消盒子内的首行缩进
+      // 这样，即使你用了空行，下面的公式也不会被缩进
+      set par(first-line-indent: 0pt) 
+      body
+    })
 )
 }
 
