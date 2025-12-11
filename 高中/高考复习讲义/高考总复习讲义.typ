@@ -254,7 +254,7 @@
 
   #question-no-answer(
     [
-      例1-1：求下列函数的导数
+      例2-1：求下列函数的导数
 
       (1)$y=x^2 sin x$
 
@@ -276,16 +276,138 @@
       (2)$y=x sin x + e^x$
 
       (3)$y=frac(ln x, x^2+1)$
+
+      (6)$y = tan x$
     ],
     outlined: false,
   )
 
 ][
 
+  #question-no-answer(
+    [
+      变式2-1：求下列函数的导数
+
+      (1)$y=x^2 cos x$
+
+      (2)$y=ln x + 1/x^2$
+
+      (3)$y=frac(tan x, 2^x) - log_3 x$
+    ],
+    outlined: false,
+  )
+
+  #question-no-answer(
+    [
+      变式2-2：求下列函数的导数
+
+      (1)$f(x)=x cos x$
+
+      (2)$f(x)=frac(e^x, x)$
+
+      (3)$y=ln x + 1/x$
+
+      (4)$y=(2x^2 - 1)(3x+1)$
+
+      (5)$y = x-sin x/2 cos x/2$
+
+    ],
+    outlined: false,
+  )
 
 ]
 
+#pagebreak()
 
+==== 题型3 在点P处的切线
+#two-col-dashed[
+  #single-choice-no-answer(
+    [
+      例3-1：曲线$y=sin x cos x -1$在点$(0,-1)$处的切线方程为
+    ],
+    ($x-2y+2=0$, $x+2y-2=0$, $x-y-1=0$, $x-y+1=0$),
+    cols: 2,
+    outlined: false,
+  )
+
+  #single-choice-no-answer(
+    [
+      例3-2：曲线$y=frac(e^(x+1), x+2)$在$x=0$处的切线方程为
+    ],
+    ($y=e/4 x$, $y=3e/4 x$, $y=e/4 x + e/2$, $y=3e/4 x + e/2$),
+    cols: 2,
+    outlined: false,
+  )
+
+  #blanks-no-answer(
+    [
+      变式3-1：函数$f(x) = 2/3 x^3 -2x$的图像在点$(3,f(3))$处的切线方程为
+    ],
+    outlined: false,
+  )
+
+][
+  #single-choice-no-answer(
+    [
+      变式3-2：已知函数$f(x)=cases(x^2-3x，x in [0,2], 2f(x-2)，x in (2,+ infinity))$，则$f(x)$在点$(3,f(3))$处的切线方程为
+    ],
+    ($8x+y-40=0$, $2x+y-10=0$, $2x-y-10=0$, $2x+y-2=0$),
+    cols: 2,
+    outlined: false,
+  )
+
+  #v(7em)
+  #blanks-no-answer(
+    [
+      变式3-3：已知函数$f(x)=sin x + f'(0)cos x$，则$f(x)$在点$(pi / 2,f(pi / 2))$处的切线方程为
+    ],
+    outlined: false,
+  )
+]
+
+==== 题型4 过点P处的切线
+#two-col-dashed[
+  #single-choice-no-answer(
+    [
+      例4-1：过点$(0,-4)$作函数$f(x)=x- 4/x$图像的切线，则切线方程为
+    ],
+    ($y=5x-4$, $y=4x-4$, $y=3x-4$, $y=2x-4$),
+    outlined: false,
+    cols: 2,
+  )
+
+#v(5em)
+  
+  #blanks-no-answer(
+    [
+      例4-2：已知$f(x)=x^2-2x+3$,则过点$A(2,-6)$且与$f(x)$相切的直线方程为
+    ],
+    outlined: false,
+  )
+][
+  #multiple-choice-no-answer(
+    [
+      变式4-1：过点$(0,1)$向曲线$y=x^3-3x^2$作切线，切线方程可能是
+    ],
+    ($4x-15y+15=0$, $3x+y-1=0$, $x+3y-3=0$, $15x-4y+4=0$),
+    outlined: false,
+    cols: 2,
+  )
+  #blanks-no-answer(
+    [
+      变式4-2：已知曲线$y=2 e^x$,过点$(0,2)$作切线$l$，则$l$的直线方程为
+    ],
+    outlined: false,
+  )
+
+    #blanks-no-answer(
+    [
+      变式4-3：若曲线$y=(x+a)e^x$存在过原点的切线，则实数$a$的取值范围为
+    ],
+    outlined: false,
+  )
+  
+]
 
 
 

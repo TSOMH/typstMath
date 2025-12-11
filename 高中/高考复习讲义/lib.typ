@@ -300,7 +300,7 @@
       dash: "dashed", //分隔符样式
     ),
     block({
-      // 修复2: 强制取消盒子内的首行缩进
+      // 强制取消盒子内的首行缩进
       // 这样，即使你用了空行，下面的公式也不会被缩进
       set par(first-line-indent: 0pt)
       body
@@ -336,7 +336,7 @@
 
 
 //单选题 箱体
-#let single-choice-no-answer(body, choices, outlined: true) = {
+#let single-choice-no-answer(body, choices, cols: 4, outlined: true) = {
   // 定义根据参数变化的样式变量
   let bg-color = if outlined { blue.lighten(80%) } else { white }
   let border-c = if outlined { blue.darken(10%) } else { white }
@@ -366,13 +366,16 @@
       #block(body + "(    )")
       #v(0.5em)
       #grid(
-        columns: (1fr,) * choices.len(),
-        rows: 0.5em,
+        // 核心修改：根据 cols 参数生成列布局 (1fr, 1fr, ...)
+        columns: (1fr,) * cols,
+        // 增加行间距，防止多行排列时太挤
+        row-gutter: 1em,
+        // 移除原先可能限制高度的 rows 参数，让其自动适应内容
         ..choices
           .enumerate()
           .map(((i, choice)) => {
             let letter = str.from-unicode(i + 65)
-            return [#(letter + ".") #h(1em) #choice]
+            return [#(letter + ".") #h(0.5em) #choice]
           })
       )
     ],
@@ -406,10 +409,58 @@
   )
 }
 
+
+//多选题 箱体
+#let multiple-choice-no-answer(body, choices, cols: 4, outlined: true) = {
+  // 定义根据参数变化的样式变量
+  let bg-color = if outlined { blue.lighten(80%) } else { white }
+  let border-c = if outlined { blue.darken(10%) } else { white }
+  let border-w = if outlined { (left: 1pt) } else { 0pt }
+
+  showybox(
+    frame: (
+      dash: "solid", //边界样式
+      inset: 1em, //内边距
+      border-color: border-c,
+      body-color: bg-color,
+      thickness: border-w,
+      radius: 0em,
+    ),
+    body-style: (
+      align: left,
+    ),
+    sep: (
+      dash: "dashed", //分隔符样式
+    ),
+    // shadow: (
+    //   // color: yellow.lighten(70%),
+    //   offset: 2pt,
+    // ),
+
+    block[
+      #block("（多选）"+ body + "(    )")
+      #v(0.5em)
+      #grid(
+        // 核心修改：根据 cols 参数生成列布局 (1fr, 1fr, ...)
+        columns: (1fr,) * cols,
+        // 增加行间距，防止多行排列时太挤
+        row-gutter: 1em,
+        // 移除原先可能限制高度的 rows 参数，让其自动适应内容
+        ..choices
+          .enumerate()
+          .map(((i, choice)) => {
+            let letter = str.from-unicode(i + 65)
+            return [#(letter + ".") #h(0.5em) #choice]
+          })
+      )
+    ],
+  )
+}
+
 #let two-col-dashed(left-content, right-content) = {
   grid(
     columns: (1fr, 1fr),
-    align: top + left,
+    align: left,
 
     // 1. 设置内边距：给文字周围留出空间，这样线就不会紧贴文字
     inset: (x: 1em, y: 0em),
