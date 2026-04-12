@@ -376,8 +376,8 @@
     cols: 2,
   )
 
-#v(5em)
-  
+  #v(5em)
+
   #blanks-no-answer(
     [
       例4-2：已知$f(x)=x^2-2x+3$,则过点$A(2,-6)$且与$f(x)$相切的直线方程为
@@ -400,16 +400,126 @@
     outlined: false,
   )
 
-    #blanks-no-answer(
+  #blanks-no-answer(
     [
       变式4-3：若曲线$y=(x+a)e^x$存在过原点的切线，则实数$a$的取值范围为
     ],
     outlined: false,
   )
-  
+
+]
+==== 题型5 已知切线或切点求参数
+#two-col-dashed[
+  #single-choice-no-answer(
+    [
+      例5-1：若曲线$f(x)=x^2−3/2 a ln(2x+1)$在点$P(1，f(1))$处的切线与直线$y=x−2$垂直，则实数a的值为
+    ],
+    ($3$, $sqrt(5)$, $2$, $1$),
+    outlined: false,
+    cols: 2,
+  )
+
+  #blanks-no-answer(
+    [
+      例5-2：若直线$y=x$为曲线$y=e^(a x+b)$的一条切线，则$b/a$的最小值为
+    ],
+    outlined: false,
+  )
+][
+  #single-choice-no-answer(
+    [
+      变式5-1：函数$f(x)=e^x+a x$在$x=0$处的切线与直线$3x−2y−5=0$平行，则实数$a=$
+    ],
+    ($-1$, $1$, $1/2$, $1/4$),
+    outlined: false,
+    cols: 4,
+  )
+
+  #single-choice-no-answer(
+    [
+      变式5-2：设曲线$y=e^(a x)$在点$(0,1)$处的切线斜率为2，则$a$的值是
+    ],
+    ($-1$, $1$, $1/2$, $1/4$),
+    outlined: false,
+    cols: 4,
+  )
+
 ]
 
 
+==== 题型6 公切线问题
+#two-col-dashed[
+  #blanks-no-answer(
+    [
+      例6-1：若直线$l$是曲线$y=ln x−1$与$y=ln(x−1)$的公切线，则直线$l$的方程为
+    ],
+    outlined: false,
+  )
+  #v(6em)
+  #blanks-no-answer(
+    [
+      例6-2：曲线$y=e^x$与曲线$y=sqrt(2 e x)$的公切线方程为
+    ],
+    outlined: false,
+  )
+][
+  #blanks-no-answer(
+    [
+      变式6-1：已知曲线$y=ln x$在$x=1$处的切线与曲线$y=e^x + a$相切，则$a=$
+    ],
+    outlined: false,
+  )
+  #blanks-no-answer(
+    [
+      变式6-2：已知曲线$f(x)=ln x+1$与$g(x)=a x^2+3/2(a>0)$有公共切线，则$a$的取值范围是
+    ],
+    outlined: false,
+  )
+  #blanks-no-answer(
+    [
+      变式6-3：若曲线$f(x)=sqrt(x)$与曲线$g(x)=a+ln x$存在公切线，则a的取值范围是
+    ],
+    outlined: false,
+  )
+]
+
+==== 题型7 已知切线条数求参数
+#two-col-dashed[
+    #single-choice-no-answer(
+    [
+      例7-1：过点$P(t,−2t)$作曲线$y=−2x^3$的切线，若切线有3条，则$t$的取值范围是
+    ],
+    ($(-infinity,-1) union (1,+infinity)$, $(-1,1)$, $(-infinity,1)$, $(-infinity,-1)$),
+    outlined: false,
+    cols: 1,
+  )
+
+    #blanks-no-answer(
+    [
+      例7-2：若过点$(1,m)$可以作曲线$y=x−2/x (x>0)$的两条切线，则实数m的取值范围是
+    ],
+    outlined: false,
+  )
+][
+
+      #single-choice-no-answer(
+    [
+      变式7-1：过点$(1,0)$可以做三条直线与曲线$f(x)=x e^x−t$相切，则实数$t$的取值范围是
+    ],
+    ($(-5/e^2,0)$, $(-5/e^2,e)$, $(-5/e,e)$, $(-1/e,0)$),
+    outlined: false,
+    cols: 2,
+  )
+
+      #blanks-no-answer(
+    [
+      变式7-2：已知过点$P(t,t)$与曲线$f(x)=x(1+ln x)$相切的直线有两条，则实数$t$的取值范围是
+    ],
+    outlined: false,
+  )
+]
+
+==== 题型7 已知切线条数求参数
 
 #pagebreak()
 === 重点难点
